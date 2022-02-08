@@ -2,16 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+#[Route("/", name:"user")]
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/login", name="app_login")
-     */
+
+     #[Route("/login", name:"_app_login")]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
@@ -26,11 +30,35 @@ class UserController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    /**
-     * @Route("/logout", name="app_logout")
-     */
+
+    #[Route("/logout", name:"_app_logout")]
+
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+
+    //Gestion du profil
+    #[Route('/user/{username}', name: '_modify')]
+    public function modifierProfil(
+        EntityManagerInterface $entityManager,
+        Request $request
+    ): Response
+    {
+
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user );
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->render('modifyProfile/user.html.twig', ['form' =>$form->createView()]);
+        }
+        return $this->renderForm('modifyProfile/user.html.twig',
+            compact('form')
+        );
+        //TODO faire la redirection vers la bonne URL
+    }
+
 }
