@@ -51,7 +51,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: NightOut::class, mappedBy: 'participants')]
     private $nightsOut;
 
-    #[ORM\OneToMany(mappedBy: 'organiser', targetEntity: NightOut::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'organizer', targetEntity: NightOut::class, orphanRemoval: true)]
     private $nightsOutOrganizer;
 
     #[ORM\ManyToOne(targetEntity: Campus::class, inversedBy: 'students')]
