@@ -31,7 +31,7 @@ class NightOut
     #[ORM\Column(type: 'integer', nullable: true)]
     private $nbInscriptionMax;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'nightOuts')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'nightsOut')]
     private $participants;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'nightsOutOrganizer')]

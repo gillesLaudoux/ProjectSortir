@@ -16,7 +16,25 @@ class NightOutRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
+
         parent::__construct($registry, NightOut::class);
+    }
+
+    public  function selectAll()
+    {
+        $qb = $this->createQueryBuilder('n');
+        $qb->innerJoin("n.state","s")
+            ->innerJoin("n.category","cat")
+            ->innerJoin("n.places","pl")
+            ->innerJoin("n.campus","cam")
+            ->innerJoin("n.participants","p")
+            ->innerJoin("n.organizer","or")
+            ->innerJoin("pl.city","ci");
+
+        $result = $qb->getQuery();
+
+        return $result;
+
     }
 
     // /**
