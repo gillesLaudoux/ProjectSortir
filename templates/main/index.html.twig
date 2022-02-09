@@ -1,5 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Welcome !{% endblock %}
 
+{% block body %}
+    <h1>Filtrer les sorties :</h1>
 
+    {#    <label for="campus-select">Choisir un campus:</label> #}
+
+    {#    <select name="filtre" id="#"> #}
+
+    {#        #}{#        <option value="{{ app.user.campus.name }}">Campus par defaut : {{ app.user.campus.name }}</option> #}
+
+    {#        {% for nightOut in nightOutList %} #}
+    {#            <option value="{{ nightOut.campus.name }}">{{ nightOut.campus.name }}</option> #}
+    {#        {% endfor %} #}
+
+    {#    </select> #}
+
+    {#  -------AFFICHER LE FORMULAIRE (SAISIE DES FILTRES)------- #}
+    {{ form_start(filterForm) }}
+    <button>Envoyer</button>
+    {{ form_end(filterForm) }}
+
+    {#  -------AFFICHER LA SORTIE------- #}
+    <ul>
+        {% for nightOut in nightOutList %}
+
+            <li> {{ nightOut.name }}</li>
+
+            <li> {{ nightOut.startingTime | date }}</li>
+            <li> {{ nightOut.dueDateInscription | date }}</li>
+            <li> {{ nightOut.nbInscriptionMax }}</li>
+            <li> {{ nightOut.state.libelle }}</li>
+            <li> {{ nightOut.organizer.username }}</li>
+            {# quand l'utilisateur sera connecté je serais si il est insrit #}
+            {#            {% if nightOut in app.user.nightsOut %} #}
+            {#                <li>est incrit : ok</li> #}
+
+            {#            {% endif %} #}
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}

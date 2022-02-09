@@ -6,6 +6,7 @@ use App\Entity\NightOut;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method NightOut|null find($id, $lockMode = null, $lockVersion = null)
  * @method NightOut|null findOneBy(array $criteria, array $orderBy = null)
@@ -20,20 +21,44 @@ class NightOutRepository extends ServiceEntityRepository
         parent::__construct($registry, NightOut::class);
     }
 
-    public  function selectAll()
+    public function selectAll()
     {
         $qb = $this->createQueryBuilder('n');
-        $qb->innerJoin("n.state","s")
-            ->innerJoin("n.category","cat")
-            ->innerJoin("n.places","pl")
-            ->innerJoin("n.campus","cam")
-            ->innerJoin("n.participants","p")
-            ->innerJoin("n.organizer","or")
-            ->innerJoin("pl.city","ci");
 
+        $qb->innerJoin("n.state", "s")
+            ->innerJoin("n.category", "cat")
+            ->innerJoin("n.places", "pl")
+            ->innerJoin("n.campus", "cam")
+            ->innerJoin("n.participants", "p")
+            ->innerJoin("n.organizer", "or")
+            ->innerJoin("pl.city", "ci");
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function selectFilter($campusName, $nightOutName, $startDate,$endDate)
+    {
+        $qb = $this->createQueryBuilder("n");
+
+        $qb->innerJoin("n.state", "s")
+            ->innerJoin("n.category", "cat")
+            ->innerJoin("n.places", "pl")
+            ->innerJoin("n.campus", "cam")
+            ->innerJoin("n.participants", "p")
+            ->innerJoin("n.organizer", "or")
+            ->innerJoin("pl.city", "ci")
+            ->where('cam.name = :name')
+            ->andWhere('n.name LIKE :nightOutName')
+            ->andWhere('n.startingTime > :startingTime')
+            ->andWhere('n.dueDateInscription < :endTime')
+            ->setParameter("name", $campusName)
+            ->setParameter("nightOutName", $nightOutName)
+            ->setParameter("startingTime", $startDate)
+            ->setParameter("endTime", $endDate)
+            ;
         $result = $qb->getQuery();
-
-        return $result;
+//        return $paginator = new Paginator($result);
+        return $result->getResult();
 
     }
 
