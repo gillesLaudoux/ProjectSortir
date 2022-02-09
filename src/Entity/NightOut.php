@@ -31,6 +31,9 @@ class NightOut
     #[ORM\Column(type: 'integer', nullable: true)]
     private $nbInscriptionMax;
 
+    #[ORM\Column(type: 'string', length: 500)]
+    private $description;
+
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'nightsOut')]
     private $participants;
 
@@ -218,6 +221,18 @@ class NightOut
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
