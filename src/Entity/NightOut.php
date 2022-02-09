@@ -224,6 +224,6 @@ class NightOut
 
     public function __toString()
     {
-        return $this->category;
+        return $this->category . $this->campus . $this->places ;
     }
 }
