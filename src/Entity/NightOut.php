@@ -57,6 +57,8 @@ class NightOut
     #[ORM\JoinColumn(nullable: false)]
     private $category;
 
+
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
@@ -241,4 +243,5 @@ class NightOut
     {
         return $this->category . $this->campus . $this->places ;
     }
+
 }

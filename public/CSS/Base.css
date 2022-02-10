@@ -1,12 +1,16 @@
+body{
+    margin: 0;
+}
 /*----NAVBAR----*/
 nav {
         display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 0 4%;
-    background-color: black;
+    padding: 0 4% ;
+    background-color: #134A80;
     color: white;
+
 }
 nav ul {
     display: flex;
@@ -26,7 +30,7 @@ nav ul :hover{
 }
 
 footer {
-    background-color: black;
+    background-color: #134A80;
     position: absolute;
     bottom: 0;
     width: 100%;

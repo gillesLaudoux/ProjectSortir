@@ -6,7 +6,6 @@ use App\Entity\NightOut;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-
 /**
  * @method NightOut|null find($id, $lockMode = null, $lockVersion = null)
  * @method NightOut|null findOneBy(array $criteria, array $orderBy = null)
@@ -21,6 +20,7 @@ class NightOutRepository extends ServiceEntityRepository
         parent::__construct($registry, NightOut::class);
     }
 
+    /** INNER JOIN sur toutes les tables pour récuperer toutes les infos liées à une sortie */
     public function selectAll()
     {
         $qb = $this->createQueryBuilder('n');
@@ -36,7 +36,8 @@ class NightOutRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function selectFilter($campusName, $nightOutName, $startDate,$endDate)
+    /** INNER JOIN sur les tables necessaire à la filtration de la recherche */
+    public function selectFilter($campusName, $nightOutName, $startDate, $endDate)
     {
         $qb = $this->createQueryBuilder("n");
 
@@ -54,11 +55,10 @@ class NightOutRepository extends ServiceEntityRepository
             ->setParameter("name", $campusName)
             ->setParameter("nightOutName", $nightOutName)
             ->setParameter("startingTime", $startDate)
-            ->setParameter("endTime", $endDate)
-            ;
+            ->setParameter("endTime", $endDate);
         $result = $qb->getQuery();
-//        return $paginator = new Paginator($result);
-        return $result->getResult();
+
+        return $result;
 
     }
 

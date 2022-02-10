@@ -19,7 +19,16 @@
 
     {#  -------AFFICHER LE FORMULAIRE (SAISIE DES FILTRES)------- #}
     {{ form_start(filterForm) }}
-    <button>Envoyer</button>
+
+        <label for="is_organizer">Dont vous êtes l'organisateur</label>
+        <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer">
+
+        <label for="is_participant">Auxquels vous participez</label>
+        <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox">
+
+        <label for="not_participant">Auxquels vous ne participez pas</label>
+        <input type="checkbox" name="not_participant" id="not_participant" class="night_out_filter form_filter checkbox">
+        <button>Envoyer</button>
     {{ form_end(filterForm) }}
 
     {#  -------AFFICHER LA SORTIE------- #}

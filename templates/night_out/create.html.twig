@@ -1,5 +1,3 @@
-{% extends 'base.html.twig' %}
-
 {% block title %}create your night out!{% endblock %}
 
 {% block body %}
@@ -9,18 +7,18 @@
     {{ form_row(formNight.name) }}
     {{ form_row(formNight.startingTime) }}
     {{ form_row(formNight.dueDateInscription) }}
-    {{ form_row(formNight.duration) }}
     {{ form_row(formNight.nbInscriptionMax) }}
-    {{ form_row(formNight.) }}
-    {{ form_row(formNight.) }}
-    {{ form_row(formNight.) }}
+    {{ form_row(formNight.duration) }} minutes
+    {{ form_row(formNight.campus) }}
+    {{ form_row(formNight.places) }}
+    {{ form_row(formNight.category) }}
+    {{ form_row(formNight.description) }}
 
 
 
-    <button type="submit" class="btn">Enregistrer</button>
-    <button type="submit" class="btn">Publier</button>
-    <button type="submit" class="btn">Annuler</button>
+    <input type="reset" value="Annuler">
     {{ form_end(formNight) }}
 
 
 {% endblock %}
+
