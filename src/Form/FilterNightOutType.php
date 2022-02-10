@@ -18,10 +18,15 @@ class FilterNightOutType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                "label"=>""
+                "label"=>"Le nom de la sortie contient :",
+                "required"=>false
             ])
-            ->add('startingTime')
-            ->add('dueDateInscription')
+            ->add('startingTime', DateType::class, [
+                "label"=>"Entre le "
+            ])
+            ->add('dueDateInscription', DateType::class, [
+                "label"=>"et le "
+            ])
            ->add('campus', EntityType::class, ["class"=> Campus::class, "choice_label"=>"name"]);
 //            ->add('category');
     }
