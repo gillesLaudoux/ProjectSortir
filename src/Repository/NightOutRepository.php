@@ -58,7 +58,7 @@ class NightOutRepository extends ServiceEntityRepository
             ->setParameter("endTime", $endDate);
         $result = $qb->getQuery();
 
-        return $result;
+        return $result->getResult();
 
     }
 

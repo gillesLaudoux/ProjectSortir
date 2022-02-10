@@ -17,8 +17,22 @@
 
     {#    </select> #}
 
-    {#  -------AFFICHER LE FORMULAIRE (SAISIE DES FILTRES)------- #}
-    {{ form_start(filterForm) }}
+    {#  -------AFFICHER LE FORMULAIRE (SAISIE DES FILTRES)------- #}{#
+{{ form_start(filterForm) }}
+
+    <label for="is_organizer">Dont vous êtes l'organisateur</label>
+    <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer">
+
+    <label for="is_participant">Auxquels vous participez</label>
+    <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox">
+
+    <label for="not_participant">Auxquels vous ne participez pas</label>
+    <input type="checkbox" name="not_participant" id="not_participant" class="night_out_filter form_filter checkbox">
+    <button>Envoyer</button>
+{{ form_end(filterForm) }} #}
+
+
+    <form action="">
 
         <label for="is_organizer">Dont vous êtes l'organisateur</label>
         <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer">
@@ -27,9 +41,22 @@
         <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox">
 
         <label for="not_participant">Auxquels vous ne participez pas</label>
-        <input type="checkbox" name="not_participant" id="not_participant" class="night_out_filter form_filter checkbox">
-        <button>Envoyer</button>
-    {{ form_end(filterForm) }}
+        <input type="checkbox" name="not_participant" id="not_participant"
+               class="night_out_filter form_filter checkbox">
+
+        <label for="filter_night_out_name">Le nom de la sortie contient :</label>
+        <input type="text" id="filter_night_out_name" name="filter_night_out_name">
+
+        <label for="filter_night_out_campus">Campus :</label>
+        <select name="filter_night_out_campus" id="filter_night_out_campus">
+
+            {% for campus in campusList %}
+                <option value="{{ campus.name }}">{{ campus.name }}</option>
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Envoyer">
+    </form>
 
     {#  -------AFFICHER LA SORTIE------- #}
     <ul>

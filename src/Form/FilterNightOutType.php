@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\LocaleType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\DateTime;
+use function Sodium\add;
 
 class FilterNightOutType extends AbstractType
 {
@@ -21,14 +22,15 @@ class FilterNightOutType extends AbstractType
                 "label"=>"Le nom de la sortie contient :",
                 "required"=>false
             ])
-            ->add('startingTime', DateType::class, [
+            ->add('startingTime', null, [
                 "label"=>"Entre le "
             ])
-            ->add('dueDateInscription', DateType::class, [
+            ->add('dueDateInscription', null, [
                 "label"=>"et le "
             ])
            ->add('campus', EntityType::class, ["class"=> Campus::class, "choice_label"=>"name"]);
 //            ->add('category');
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
