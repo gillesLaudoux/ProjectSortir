@@ -28,7 +28,6 @@ class NightOutController extends AbstractController
             compact('nightOutList')
         );
 
-
     }
 
     /** Fonction qui permet d'afficher une sortie selon différents filtres */
@@ -89,7 +88,6 @@ class NightOutController extends AbstractController
             compact("nightOutList", "filterForm")
         );
 
-
     }
     #[Route('/create', name: '_create')]
     public function CreateNightOut(
@@ -109,18 +107,20 @@ class NightOutController extends AbstractController
             //$isDateValide2 = $verifdate->DateDiff(,$nightOut->getDueDateInscription())
             //   //TODO en cours : verif dates
 
+            /** Recupération de l'ID de la personne co en passant par le Repository afin d'assigner l'objet Organisateur
+             * portant cet ID en tant oragnisateur de la soirée
+             */
             $nightOut->setOrganizer($userRepository->find($this->getUser()->getId()));
 
-            //Linkage des bouttons pour le submit des etats selon les idées
+            /**  Linkage des bouttons pour le submit des etats selon les idées */
             if ($formNight->get('enregistrer')->isClicked()){
                 $nightOut->SetState($stateRepository->find(1));
-                dump('Enregistrer');
             }
             else if ($formNight->get('publier')->isClicked()){
                 $nightOut->SetState($stateRepository->find(2));
-                dump('Publ');
+
             }
-            dump('COUCOU');
+
             $entityManager->persist($nightOut);
             $entityManager->flush();
 
