@@ -1,41 +1,48 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        <link rel="stylesheet" href="{{ asset('CSS/Base.css') }}">
-        {% block stylesheets %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome! | {% endblock %}</title>
+    {% block CSS %}
+    <link rel="stylesheet" href="{{ asset('CSS/Base.css') }}">
+    {% endblock %}
 
 
-        {% endblock %}
+</head>
+<body>
 
-    </head>
-    <body>
+<header>
+    <!------NAVBAR------>
+    <nav>
+        <div class="nav">
+            <h1>HANG OUT </h1>
+        </div>
+        {% if app.user %}
+            <div class="heysalut">
+                Hey Salut  {{ app.user.username }} !<a href="{{ path('app_logout') }}"></a>
+            </div>
+        {% endif %}
 
-            <header>
-                <!------NAVBAR------>
-                <nav>
-                    <div class="profile">
-                        <h1>HANG OUT </h1>
-                    </div>
-                    <ul>
-                        <li>Home</li>
-                        <li>About Us</li>
-                        <li>Liste</li>
-                        <li>Détail</li>
-                    </ul>
-                </nav>
-            </header>
+        <ul>
+            {# TODO prevoir onglets villes et sites pour l'admin #}
+            {# TODO Script pour lien href
+                        <li><a href="{{ path('nom_de_route') }}">Login</a></li>
+            #}
+            <li>Accueil</li>
+            <li>Profil</li>
+            <li><a href="{{ path('app_logout') }}">Logout</a></li>
 
-            {% block body %}
+        </ul>
+    </nav>
+</header>
+
+{% block body %}
 
 
-            {% endblock %}
-    </body>
+{% endblock %}
+</body>
 
-    <footer>
-
-    </footer>
+<footer>
+    <p>Hang Out - Copyright 2022</p>
+</footer>
 </html>
