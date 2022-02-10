@@ -24,9 +24,9 @@ class RegistrationFormType extends AbstractType
 
             ->add('username', null, [
                 'attr' => ["class" => "app_register form text username",
-                "label"=>"Pseudo utilisateur :",
                 ],
-                "required" => true
+                "required" => true,
+                "label"=>"Pseudo utilisateur :"
             ])
 
             ->add('email', EmailType::class,

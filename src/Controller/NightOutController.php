@@ -32,7 +32,7 @@ class NightOutController extends AbstractController
     }
 
     /** Fonction qui permet d'afficher une sortie selon différents filtres */
-    #[Route('/nightoutfilter', name: 'night_out_filter')]
+    #[Route('/nightoutfilter', name: '_filter')]
     public function nightOutFilterCampus(
         NightOutRepository $nightOutRepository,
         Request            $request
