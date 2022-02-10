@@ -17,7 +17,9 @@ class FilterNightOutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                "label"=>""
+            ])
             ->add('startingTime')
             ->add('dueDateInscription')
            ->add('campus', EntityType::class, ["class"=> Campus::class, "choice_label"=>"name"]);
