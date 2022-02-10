@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}update your night out!{% endblock %}
+
+{% block body %}
+    <h1>Modification d'une sortie</h1>
+
+    {{ form_start(formUpdateNightOut) }}
+    {{ form_row(formUpdateNightOut.name) }}
+    {{ form_row(formUpdateNightOut.startingTime) }}
+    {{ form_row(formUpdateNightOut.dueDateInscription) }}
+    {{ form_row(formUpdateNightOut.nbInscriptionMax) }}
+    {{ form_row(formUpdateNightOut.duration) }} minutes
+    {{ form_row(formUpdateNightOut.campus) }}
+    {{ form_row(formUpdateNightOut.places) }}
+    {{ form_row(formUpdateNightOut.category) }}
+    {{ form_row(formUpdateNightOut.description) }}
+
+    <input type="reset" value="Annuler">
+    {{ form_end(formUpdateNightOut) }}
+
+    {% for success in app.flashes('success') %}
+        {{ success }}
+    {% endfor %}
+
+    {% for fail in app.flashes('fail') %}
+        {{ fail }}
+    {% endfor %}
+
+{% endblock %}

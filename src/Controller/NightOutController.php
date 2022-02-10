@@ -104,8 +104,10 @@ class NightOutController extends AbstractController
         $formNight->handleRequest($request);
         if($formNight->isSubmitted() && $formNight->isValid()){
             //Vérification des dates pour l'inscription
-            //$isDateValide =  $verifdate->DateDiff($nightOut->$this->getDueDateInscription(), $nightOut->getStartingTime());
-            //$isDateValide2 = $verifdate->DateDiff(,$nightOut->getDueDateInscription())   //TODO en cours : verif dates
+            //$isDateValide =  $verifdate->DateDiff($nightOut->$this->getDueDateInscription(),
+            // $nightOut->getStartingTime());
+            //$isDateValide2 = $verifdate->DateDiff(,$nightOut->getDueDateInscription())
+            //   //TODO en cours : verif dates
 
             $nightOut->setOrganizer($userRepository->find($this->getUser()->getId()));
 
