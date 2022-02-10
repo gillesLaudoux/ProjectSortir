@@ -21,14 +21,38 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username')
-            ->add('email', EmailType::class)
-            ->add('firstName')
-            ->add('lastName')
-            ->add('phoneNumber')
+
+            ->add('username', null, [
+                'attr' => ["class" => "app_register form text username",
+                "label"=>"Pseudo utilisateur :",
+                ],
+                "required" => true
+            ])
+
+            ->add('email', EmailType::class,
+            ["attr"=>["class"=>"app_register form email",
+                "label"=>"Adresse mail :"]])
+
+            ->add('firstName', null, [
+                'attr'=>["class"=>"app_register form text firstName",
+                    "label"=>"Votre prènom"],
+                "required"=>true])
+
+            ->add('lastName', null, [
+                "attr"=>["class"=>"app_register form text lastName",
+                    "label"=>"Votre nom"],
+                "required"=>true
+            ])
+
+            ->add('phoneNumber', null, [
+                "attr"=>["class"=>"app_register form text phoneNumber",
+                    "label"=>"Téléphone :"]])
+
             ->add('campus', EntityType::class,
                     ["class"=>Campus::class,
-                        "choice_label"=>"name"])
+                        "choice_label"=>"name",
+                        "attr"=>["class"=>"app_register form entityCampus"]])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -41,7 +65,8 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password',
+                    "class"=>"app_register form password"],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
