@@ -34,33 +34,26 @@ class NightOutController extends AbstractController
     /** Fonction qui permet d'afficher une sortie selon différents filtres */
     #[Route('/nightoutfilter', name: '_filter')]
     public function nightOutFilterCampus(
-        NightOutRepository $nightOutRepository,
+        NightOutRepository $nightOutRepository, CampusRepository $campusRepository,
         Request            $request
     ): Response
     {
-        $newNightOut = new NightOut();
-
-        $filterForm = $this->createForm(FilterNightOutType::class, $newNightOut);
-        $filterForm->handleRequest($request);
+        $campusList = $campusRepository->findAll();
         /** On ne chercher pas à faire une nouvelle insertion d'une NightOut, ici on s'en sert pour récupérer des
          * champs, dans le but de filtrer ce qu'on affiche
          */
-        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
-            // On récupére ici les champs servant au filtre
-            $campus = $newNightOut->getCampus()->getName();
-            $nightOutName = $newNightOut->getName();
-            $startDate = $newNightOut->getStartingTime();
-            $endDate = $newNightOut->getDueDateInscription();
-//            $isOrganizer = $request->query->get('is_organizer');
-
-            dump("On rentre dans le if");
-
-            dump($campus);
-            dump($nightOutName);
-            dump($startDate);
-            dump($endDate);
-//TODO supprimer les dump à la prod
-
+        $isOrganizer = $request->query->get('is_organizer');
+        $isParticipant = $request->query->get('is_participant');
+        $notParticipant = $request->query->get('not_participant');
+        dump("Nos variables :");
+        $campus = $request->query->get("filter_night_out_campus");
+        $nightOutName = $request->query->get("filter_night_out_name");
+        $startDate = $request->query->get("filter_night_out_startTime");
+        $endDate = $request->query->get("filter_night_out_endTime");
+        if (is_null($campus)&&is_null($isOrganizer)&&is_null($isParticipant)&&is_null($notParticipant)&&
+            is_null($nightOutName)){
+            $nightOutList = $nightOutRepository->selectAll();
+        } else {
             // Si les champs de Date ne sont pas remplies, on les initialise à des dates qui ne perturbent pas notre
             // filtre
             if (empty($startDate)) {
@@ -71,26 +64,45 @@ class NightOutController extends AbstractController
                 $endDate = new \DateTime("2023-01-01");
                 dump("On initialise endate");
             }
-
+            if(!is_null($isOrganizer)){ // si on veut les sorties dont l'user est l'organisateur, on va chercher son id
+                // pour l'utiliser avec le Repo
+                $idOrganizer = $this->getUser()->getId();
+            } else {$idOrganizer=null;}
+            if(!is_null($isParticipant)){
+                $idParticipant = $this->getUser()->getId();
+            } else {$idParticipant=null;}
+            if(!is_null($notParticipant)){
+                $idNotParticipant = $this->getUser()->getId();
+            }else {$idNotParticipant=null;}
+            dump($campus);
+            dump($nightOutName);
+            dump($isOrganizer);
+            dump($isParticipant);
+            dump($notParticipant);
+            dump($startDate);
+            dump($endDate);
+            dump($idOrganizer);
+            dump($idParticipant);
+            dump($idNotParticipant);
+//TODO supprimer les dump à la prod
             // On fait un like sur le nom, en ajoutant les % on fait un un LIKE %name%
             // Cela permet aussi de trouver tout les NightOut ayant certains caractères
             $nightOutName = "%" . $nightOutName . "%"; /**permet de faire une recherche par mots clés*/
-            $nightOutList = $nightOutRepository->selectFilter($campus, $nightOutName, $startDate, $endDate);
-
-        } else {
-            // Requête permettant de sélectionner tous les articles (avec des inner joins) si le formulaire de filtre
-            // n'est pas utilisé
-            $nightOutList = $nightOutRepository->selectAll();
+            $nightOutList = $nightOutRepository->selectFilter($campus, $nightOutName, $startDate, $endDate,
+                $idOrganizer, $idParticipant, $idNotParticipant);
         }
-
+        dump($endDate);
+        dump($startDate);
+        // Requête permettant de sélectionner tous les articles (avec des inner joins) si le formulaire de filtre
+        // n'est pas utilisé
         dump($nightOutList);
-
-        return $this->renderForm('main/index.html.twig',
-            compact("nightOutList", "filterForm")
+        return $this->render('main/index.html.twig',
+            compact("nightOutList", "campusList")
         );
-
-
     }
+
+
+
     #[Route('/create', name: '_create')]
     public function CreateNightOut(
         EntityManagerInterface $entityManager,
@@ -132,6 +144,7 @@ class NightOutController extends AbstractController
             compact('formNight')
         );
     }
+
 
 
 //    #[Route('/nightout', name: 'night_out')]
