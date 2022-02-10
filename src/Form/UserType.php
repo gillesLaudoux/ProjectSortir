@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Campus;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,8 +24,11 @@ class UserType extends AbstractType
             //->add('administrator')
             //->add('isActivated')
             //->add('nightsOut')
-            //->add('campus',null, ["label" => "Campus ENI : "])
-        ;
+            ->add('campus',EntityType::class,
+                ['class'=>Campus::class,
+                    "label" => "Campus ENI : "]);
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

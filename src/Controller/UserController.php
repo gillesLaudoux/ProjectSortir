@@ -40,7 +40,7 @@ class UserController extends AbstractController
     }
 
 
-    //Gestion du profil
+    /** Gestion du profil */
     #[Route('/user/{username}', name: 'modify')]
     public function modifierProfil(
         EntityManagerInterface $entityManager,
@@ -63,6 +63,20 @@ class UserController extends AbstractController
         );
         //TODO faire message erreur si pas marcher
 
+    }
+
+    /** Affichage d'un profil */
+    #[Route('/user/detail/{id}', name:'detail') ]
+    public function detail  (
+    UserRepository $userRepository,
+    $id
+    ):Response
+    {
+        $user = $userRepository->find($id);
+        dump($user);
+        return $this->render('user/detail.html.twig',
+        compact("user")
+    );
     }
 
 }
