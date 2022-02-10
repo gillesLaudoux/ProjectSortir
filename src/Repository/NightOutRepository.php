@@ -37,16 +37,16 @@ class NightOutRepository extends ServiceEntityRepository
     }
 
     /** INNER JOIN sur les tables necessaire à la filtration de la recherche */
-    public function selectFilter($campusName, $nightOutName, $startDate, $endDate)
+    public function selectFilter($campusName, $nightOutName, $startDate, $endDate, $idOrganizer, $idParticipant,
+                                 $idNotParticipant)
     {
         $qb = $this->createQueryBuilder("n");
-
         $qb->innerJoin("n.state", "s")
             ->innerJoin("n.category", "cat")
             ->innerJoin("n.places", "pl")
             ->innerJoin("n.campus", "cam")
             ->innerJoin("n.participants", "p")
-            ->innerJoin("n.organizer", "or")
+            ->innerJoin("n.organizer", "org")
             ->innerJoin("pl.city", "ci")
             ->where('cam.name = :name')
             ->andWhere('n.name LIKE :nightOutName')
@@ -56,10 +56,26 @@ class NightOutRepository extends ServiceEntityRepository
             ->setParameter("nightOutName", $nightOutName)
             ->setParameter("startingTime", $startDate)
             ->setParameter("endTime", $endDate);
+        /* Si l'id d'un organizer est donné, on sélectionne que les NightOut qu'il organise */
+        if(!is_null($idOrganizer)){
+            dump("Repos add option idOrganizer");
+            $qb->andWhere("org.id = :idOrganizer ")
+                ->setParameter("idOrganizer", $idOrganizer);
+        }
+        /* Si l'id de l'user est donné, on sélectionne que les NightOut auxquelles il participe */
+        if(!is_null($idParticipant)){
+            dump("Repos add option idParticipant");
+            $qb->andWhere("p.id = :idParticipant")
+                ->setParameter("idParticipant", $idParticipant);
+        }
+        /* Dans ce cas on sélectionne toutes les NightOus auxquelles l'user ne participe pas */
+        if(!is_null($idNotParticipant)){
+            dump("Repos add option idNotParticipant");
+            $qb->andWhere("p.id != :idNotParticipant")
+                ->setParameter("idNotParticipant", $idNotParticipant );
+        }
         $result = $qb->getQuery();
-
         return $result->getResult();
-
     }
 
     // /**
