@@ -5,10 +5,10 @@ namespace App\Service;
 class verifdate
 
 {
-    public function dateDif($date1, $date2): bool
+    public function dateDiff($date1, $date2): bool
     {
-        $diff = date_diff($date1, $date2);
-        if ($diff < 0) {
+
+        if ($date1 < $date2) {
             $isDateValid = true;
         } else {
             $isDateValid = false;
