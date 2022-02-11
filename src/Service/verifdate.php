@@ -12,7 +12,6 @@ class verifdate
 
         $now = new DateTime();
 
-
         if ($date1 < $date2 && $now < $date1 && $now < $date2) {
             $isDateValid = true;
         } else {
