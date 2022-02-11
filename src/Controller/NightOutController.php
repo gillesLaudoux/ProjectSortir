@@ -199,6 +199,21 @@ class NightOutController extends AbstractController
             compact('formUpdateNightOut')
         );
 
+    }
+
+    /**  Update de l'événement */
+    #[Route('/detail/{id}', name: '_detail')]
+    public function detail(
+        NightOutRepository $nightOutRepository,
+        $id
+    ):Response
+    {
+        $nightOut = $nightOutRepository->find($id);
+        return $this->render('night_out/detail.html.twig',compact('nightOut'));
+
+    }
+
+
 //    #[Route('/nightout', name: 'night_out')]
 //    public function selectAll(
 //
@@ -210,5 +225,5 @@ class NightOutController extends AbstractController
 //        ]);
 //    }
 
-    }
+
 }
