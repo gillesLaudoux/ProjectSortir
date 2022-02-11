@@ -26,32 +26,34 @@ class RegistrationFormType extends AbstractType
                 'attr' => ["class" => "app_register form text username",
                 ],
                 "required" => true,
-                "label"=>"Pseudo utilisateur :"
+                "label"=> false
             ])
 
             ->add('email', EmailType::class,
-            ["attr"=>["class"=>"app_register form email"]
-                ,"label"=>"Adresse mail :"])
+            ["attr"=>["class"=>"app_register form email"],
+                "label"=> false
+            ])
 
             ->add('firstName', null, [
                 'attr'=>["class"=>"app_register form text firstName"],
-                "label"=>"Votre prènom",
+                "label"=> false,
                 "required"=>true])
 
             ->add('lastName', null, [
                 "attr"=>["class"=>"app_register form text lastName"],
                 "required"=>true,
-                "label"=>"Votre nom"
+                "label"=> false
             ])
 
             ->add('phoneNumber', null, [
                 "attr"=>["class"=>"app_register form text phoneNumber"],
-                "label"=>"Téléphone :"])
+                "label"=> false
+            ])
 
             ->add('campus', EntityType::class,
                     ["class"=>Campus::class,
                         "choice_label"=>"name",
-                        "label"=>"Campus :",
+                        "label"=> false,
                         "attr"=>["class"=>"app_register form entityCampus"]])
 
             ->add('agreeTerms', CheckboxType::class, [
@@ -67,7 +69,7 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                "label"=>"Mot de passe :",
+                "label"=> false,
                 'attr' => ['autocomplete' => 'new-password',
                     "class"=>"app_register form password"],
                 'constraints' => [

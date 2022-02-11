@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Mon évènement !</h1>
+
+    <p>Nom de l'évènement : {{ nightOut.name }}</p>
+    <p>Date / Heure : {{ nightOut.startingTime |date ('d-m-Y')}}</p>
+    <p>Date limite d'inscription : {{ nightOut.dueDateInscription |date ('d-m-Y')}}</p>
+    <p>Nombre de places : {{ nightOut.nbInscriptionMax }}</p>
+    <p>Durée de lévénement : {{ nightOut.duration }}</p>
+    <p>Description : {{ nightOut.description }}</p>
+    <p>Campus : {{ nightOut.campus.name }}</p>
+    <p>Lieu : {{ nightOut.places.name }}</p>
+    <p>Type d'événement : {{ nightOut.category.libelle }}</p>
+
+{% endblock %}

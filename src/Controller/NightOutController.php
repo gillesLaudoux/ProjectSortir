@@ -18,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use \Datetime;
 
 #[Route('/nightout', name: 'night_out')]
 class NightOutController extends AbstractController
@@ -95,6 +94,7 @@ class NightOutController extends AbstractController
     }
 
 
+
     #[Route('/create', name: '_create')]
     public function CreateNightOut(
         EntityManagerInterface $entityManager,
@@ -108,43 +108,60 @@ class NightOutController extends AbstractController
         $nightOut = new NightOut();
         $formNight = $this->createForm(NightOutType::class, $nightOut);
         $formNight->handleRequest($request);
-        if ($formNight->isSubmitted() && $formNight->isValid()) {
-            //Vérification des dates pour l'inscription
-            $now = new DateTime();
-            /** Si $isDateValide === true -> date 1 inférieure à date deux -> dateValide   */
-            $isDateValide = $verifdate->DateDiff($nightOut->getDueDateInscription(), $nightOut->getStartingTime());
-            $isDateValide2 = $verifdate->DateDiff($now, $nightOut->getDueDateInscription());
-            $isDateValide3 = $verifdate->DateDiff($now, $nightOut->getDueDateInscription());
 
-            (dump($isDateValide));
-            dump($isDateValide2, $isDateValide3);
+        $isDateValide = $verifdate->DateDiff($nightOut->getDueDateInscription(), $nightOut->getStartingTime());
 
-            //   //TODO en cours : verif dates
 
-            /** Recupération de l'ID de la personne co en passant par le Repository afin d'assigner l'objet Organisateur
-             * portant cet ID en tant oragnisateur de la soirée
-             */
-            $nightOut->setOrganizer($userRepository->find($this->getUser()->getId()));
 
-            /**  Linkage des bouttons pour le submit des etats selon les idées */
-            if ($formNight->get('enregistrer')->isClicked()) {
-                $nightOut->SetState($stateRepository->find(1));
-                dump('Enregistrer');
-            } else if ($formNight->get('publier')->isClicked()) {
-                $nightOut->SetState($stateRepository->find(2));
+            if ($formNight->isSubmitted() && $formNight->isValid()) {
+
+                if($isDateValide) {
+                //Vérification des dates pour l'inscription
+
+                /** Si $isDateValide === true -> date 1 inférieure à date deux -> dateValide   */
+
+
+                //   //TODO en cours : verif dates
+
+                /** Recupération de l'ID de la personne co en passant par le Repository afin d'assigner l'objet Organisateur
+                 * portant cet ID en tant oragnisateur de la soirée
+                 */
+                $nightOut->setOrganizer($userRepository->find($this->getUser()->getId()));
+
+                /**  Linkage des bouttons pour le submit des etats selon les idées */
+                if ($formNight->get('enregistrer')->isClicked()) {
+                    $nightOut->SetState($stateRepository->find(1));
+                    dump('Enregistrer');
+                } else if ($formNight->get('publier')->isClicked()) {
+                    $nightOut->SetState($stateRepository->find(2));
+
+                }
+
+                $entityManager->persist($nightOut);
+//                    unset($nightOut);
+//                    unset($formNight);
+//
+//                    $nightOut = new NightOut();
+//                    $formNight = $this->createForm(NightOutType::class, $nightOut);
+
+                $entityManager->flush();
+
+//                    $this->addFlash('fail', "Ta sortie a bien été mise en ligne!! :)");
+
+                return $this->render('night_out/index.html.twig');
 
             }
-
-            $entityManager->persist($nightOut);
-            $entityManager->flush();
-
-            return $this->renderForm('night_out/create.html.twig',
-                compact("formNight")
-            );
+                else {
+                    $this->addFlash('fail', "Ta sortie n'a pas été prise en compte, tu as dû faire une erreur de saisie quelque part!! :(");
+                }
         }
+
+
         return $this->renderForm('night_out/create.html.twig',
             compact('formNight')
         );
+
+
     }
 
     /**  Update de l'événement */
@@ -198,6 +215,21 @@ class NightOutController extends AbstractController
             compact('formUpdateNightOut')
         );
 
+    }
+
+    /**  Affichage de l'événement */
+    #[Route('/detail/{id}', name: '_detail')]
+    public function detail(
+        NightOutRepository $nightOutRepository,
+        $id
+    ):Response
+    {
+        $nightOut = $nightOutRepository->find($id);
+        return $this->render('night_out/detail.html.twig',compact('nightOut'));
+
+    }
+
+
 //    #[Route('/nightout', name: 'night_out')]
 //    public function selectAll(
 //
@@ -209,5 +241,5 @@ class NightOutController extends AbstractController
 //        ]);
 //    }
 
-    }
+
 }

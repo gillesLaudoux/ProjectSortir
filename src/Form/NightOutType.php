@@ -6,6 +6,7 @@ use App\Entity\Campus;
 use App\Entity\Category;
 use App\Entity\NightOut;
 use App\Entity\Place;
+use Doctrine\ORM\Query\AST\DeleteStatement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -44,6 +45,7 @@ class NightOutType extends AbstractType
                 'label' => 'Enregistrer'])
             ->add('publier',SubmitType::class, [
                 'label' => 'Publier'])
+
 
         ;
     }

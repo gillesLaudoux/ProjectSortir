@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}Connexion{% endblock %}
+{% block title %}{{ parent() }}Sign In{% endblock %}
 
 {% block CSS %}
     {{ parent() }}
@@ -20,19 +20,19 @@
         {#        </div> #}
         {#    {% endif %} #}
         <div class="divlogin">
-            <h1 class="connexion">Veuillez vous connecter</h1>
+            <h1 class="connexion">Sign in </h1>
 
 
             <div class="sousdivlogin">
-                <label  class="pseudolabel" for="pseudo">Pseudo</label>
+                {#                <label  class="pseudolabel" for="pseudo">Pseudo</label> #}
                 <input type="text" value="{{ last_username }}" name="username" id="pseudo" class="pseudoinput"
-                       autocomplete="username" required autofocus>
+                       placeholder="pseudo" autocomplete="username" required autofocus>
             </div>
 
             <div class="sousdivlogin">
-                <label class="mdplabel" for="motdepasse">Mot de passe</label>
+                {#                <label class="mdplabel" for="motdepasse">Mot de passe</label> #}
                 <input type="password" name="password" id="motdepasse" class="mdpinput"
-                       autocomplete="current-password" required>
+                       placeholder="mot de passe" autocomplete="current-password" required>
             </div>
 
             <input type="hidden" name="_csrf_token"
@@ -49,9 +49,11 @@
             </div>
             #}
             <div class="sousdivlogin">
-                <button class="submitbt" type="submit">
-                    Sign in
-                </button>
+                <div class="sousdivbutton">
+                    <button class="submitbt" type="submit">
+                        Let's Go
+                    </button>
+                </div>
             </div>
         </div>
     </form>
