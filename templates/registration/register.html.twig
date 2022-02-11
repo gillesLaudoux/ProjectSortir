@@ -20,16 +20,14 @@
         <div class="sousdivregister">
             {{ form_row(registrationForm.username,{
                 'attr' :{  'placeholder': 'Pseudo',
-
-
                 },
-            }) }}</div>
+            }) }}
+        </div>
+
         {#        prenom #}
         <div class="sousdivregister">
             {{ form_row(registrationForm.firstName,{
                 'attr' :{  'placeholder': 'Prenom',
-
-
                 },
             }) }}</div>
 
@@ -56,10 +54,10 @@
         </div>
         {#        campus #}
         <div class="sousdivregister">
-            {{ form_row(registrationForm.campus) }}
-        </div>
+            {{ form_row(registrationForm.campus,
+            ) }}</div>
 
-        {#        password #}
+        {# password #}
         <div class="sousdivregister">
             {{ form_row(registrationForm.plainPassword, {
                 'attr' :{  'placeholder': 'Mot de passe'

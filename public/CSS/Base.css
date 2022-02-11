@@ -9,14 +9,24 @@ body {
 /*----NAVBAR----*/
 .navbar {
     background-color: #134A80;
+    padding-left: 5%;
+    padding-right: 5%;
+
 }
 
 .navbar-item h1 {
     font-size: 2em;
+    color : white;
 }
 
+.navbar p{
+    padding-left: 100px;
+    font-size: 30px;
+
+}
 .navbar-item {
     font-size: 1.2em;
+    color : white;
 }
 
 .navbar-burger{
@@ -47,6 +57,12 @@ footer p {
 }
 .navbar-item h1 {
     font-size: 1.5em;
+}
+
+div input{
+    border: none;
+    border-radius: 7px;
+    height: 38px;
 }
 
 
