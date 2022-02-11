@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\FilterNightOutType;
 use App\Entity\NightOut;
 use App\Form\NightOutType;
+use App\Form\NightOutUpdateType;
 use App\Repository\StateRepository;
 use App\Repository\CampusRepository;
 use App\Repository\NightOutRepository;
@@ -148,6 +149,63 @@ class NightOutController extends AbstractController
         );
     }
 
+    /**  Update de l'événement */
+    #[Route('/update/{id}', name: '_update')]
+    public function updateNightOut(
+        EntityManagerInterface $entityManager,
+        Request $request,
+        NightOutRepository $nightOutRepository,
+        StateRepository $stateRepository,
+        $id
+    ): Response{
+
+    dump($id);
+
+        $nightOut = $nightOutRepository->find($id);
+        $formUpdateNightOut = $this->createForm(NightOutUpdateType::class, $nightOut );
+        $formUpdateNightOut->handleRequest($request);
+
+        if ($formUpdateNightOut->isSubmitted() && $formUpdateNightOut->isValid()) {
+
+            dump($nightOut->GetState()->getId());
+
+            /**Evenement en etat Créé*/
+            if ($formUpdateNightOut->get('enregistrer')->isClicked() && $nightOut->GetState()->getId() == 1){
+                $nightOut->SetState($stateRepository->find(1));
+            }
+
+            /**  Evenvement en état Ouvert*/
+            else if ($formUpdateNightOut->get('publier')->isClicked()){
+                $nightOut->SetState($stateRepository->find(2));
+            }
+
+                /**Suppression de l'évènement si l'état est en Créé et annulation de l'évènement si l'état est en Ouvert */
+            if ($formUpdateNightOut->get('supprimer')->isClicked() && $nightOut->getState() === $stateRepository->find(1)) {
+
+                $entityManager->remove((object)$nightOut);
+                $entityManager->flush();
+            }
+            if ($formUpdateNightOut->get('supprimer')->isClicked() && $nightOut->getState() === $stateRepository->find(2)){
+                $nightOut->SetState($stateRepository->find(6));
+            }
+
+            $entityManager->persist($nightOut);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Vous avez bien modifié votre événement ! Bien ouej');
+
+            return $this->render('night_out/update.html.twig', ['formUpdateNightOut' =>$formUpdateNightOut
+                ->createView()]);
+        }
+
+        if ($formUpdateNightOut->isSubmitted() && !$formUpdateNightOut->isValid()) {
+            $this->addFlash('fail', "Votre modification n'a pas été prise en compte.");
+        }
+
+        return $this->renderForm('night_out/update.html.twig',
+            compact('formUpdateNightOut')
+        );
+
 
 //    #[Route('/nightout', name: 'night_out')]
 //    public function selectAll(
@@ -160,4 +218,5 @@ class NightOutController extends AbstractController
 //        ]);
 //    }
 
+}
 }
