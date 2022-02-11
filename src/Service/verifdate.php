@@ -15,4 +15,14 @@ class verifdate
         }
         return $isDateValid;
     }
+
+    /** Return true if dateNow < parameter */
+    public function dueDateValid($dueDateNightOut) : bool {
+
+        $now = new \DateTime();
+
+        if($now<=$dueDateNightOut){return true;}
+
+        return false;
+    }
 }

@@ -11,12 +11,13 @@ class AddRemoveNightOut
 {
 
     public function __construct(NightOutRepository $nightOutRepository, UserRepository $userRepository,
-                                EntityManagerInterface $em, Security $security){
+                                EntityManagerInterface $em, Security $security, verifdate $verif){
 
         $this->nightOutRepository = $nightOutRepository;
         $this->userRepository = $userRepository;
         $this->em = $em;
         $this->security = $security;
+        $this->verif = $verif;
     }
 
     public function exec ($idNightOut) : void
@@ -26,6 +27,9 @@ class AddRemoveNightOut
         $nightOut = $this->nightOutRepository->find($idNightOut); // on va cherche en db la NightOut à laquelle on veut
         // ajouter un user
 
+
+
+
         $user = $this->userRepository->find($idUser); // on va chercher l'user en db
 
         $userNightsOut = $user->getNightsOut(); // on récupére la liste des NightOut auxquelles participe l'user
@@ -34,7 +38,9 @@ class AddRemoveNightOut
 
             $user->removeNightOut($nightOut);
 
-        } else {
+        } elseif ($this->verif->dueDateValid($nightOut->getDueDateInscription())) {
+            /* vérifie si la date d'inscription est inférieure à la date de clotûre */
+
             /* Si l'objet n'est pas dans le tableau, on l'y ajoute */
             $user->addNightOut($nightOut);
         }
@@ -44,5 +50,6 @@ class AddRemoveNightOut
         $this->em->flush();
 
     }
+
 
 }
