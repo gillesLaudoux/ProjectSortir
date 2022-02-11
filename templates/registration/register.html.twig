@@ -1,18 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ parent() }}Register{% endblock %}
+
+{% block CSS %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/register.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    <div class="divregister">
+        <h1>Register</h1>
+        <div class="sousdivregister">
+            <p>{{ form_start(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            </p>
+        </div>
+        {#        pseudo #}
+        <div class="sousdivregister">
+            {{ form_row(registrationForm.username,{
+                'attr' :{  'placeholder': 'Pseudo',
+
+
+                },
+            }) }}</div>
+        {#        prenom #}
+        <div class="sousdivregister">
+            {{ form_row(registrationForm.firstName,{
+                'attr' :{  'placeholder': 'Prenom',
+
+
+                },
+            }) }}</div>
+
+        {#        nom #}
+        <div class="sousdivregister">
+            {{ form_row(registrationForm.lastName, {
+                'attr' :{  'placeholder': 'Nom'
+                },
+            }) }}</div>
+        {#        telephone #}
+        <div class="sousdivregister">
+            {{ form_row(registrationForm.phoneNumber, {
+                'attr' :{  'placeholder': 'Telephone'
+                },
+            }) }}</div>
+        {#         email #}
+        <div class="sousdivregister">
+            <div class="mail">
+                {{ form_row(registrationForm.email, {
+                    'attr' :{  'placeholder': 'Mail'
+                    },
+                }) }}
+            </div>
+        </div>
+        {#        campus #}
+        <div class="sousdivregister">
+            {{ form_row(registrationForm.campus) }}
+        </div>
+
+        {#        password #}
+        <div class="sousdivregister">
+            {{ form_row(registrationForm.plainPassword, {
+                'attr' :{  'placeholder': 'Mot de passe'
+                },
+            }) }}
+        </div>
+        {#            confidentialité #}
+        <div class="sousdivregister">
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+
+        <div class="sousdivregister">
+            <div class="bouton">
+                <button type="submit" class="btn">Register</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

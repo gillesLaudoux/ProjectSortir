@@ -2,9 +2,11 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome! | {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HANG OUT | {% endblock %}</title>
     {% block CSS %}
-    <link rel="stylesheet" href="{{ asset('CSS/Base.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/Base.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     {% endblock %}
 
 
@@ -12,27 +14,51 @@
 <body>
 
 <header>
-    <!------NAVBAR------>
-    <nav>
-        <div class="nav">
-            <h1>HANG OUT </h1>
-        </div>
-        {% if app.user %}
-            <div class="heysalut">
-                Hey Salut  {{ app.user.username }} !<a href="{{ path('app_logout') }}"></a>
-            </div>
-        {% endif %}
 
-        <ul>
-            {# TODO prevoir onglets villes et sites pour l'admin #}
-            {# TODO Script pour lien href
+
+    {# TODO prevoir onglets villes et sites pour l'admin #}{#
+    #}{# TODO Script pour lien href
                         <li><a href="{{ path('nom_de_route') }}">Login</a></li>
-            #}
-            <li>Accueil</li>
-            <li>Profil</li>
-            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+    #}
 
-        </ul>
+    <!------NAVBAR------>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <h1>Hang Out</h1>
+            </a>
+            {% if app.user %}
+                <a class="navbar-item">
+                    Hey " {{ app.user.username }} " !<a href="{{ path('app_logout') }}"></a>
+                </a>
+            {% endif %}
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample" >
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item"
+                        href="{{ path('night_out_filter') }}">Home
+                </a>
+
+                <a class="navbar-item">
+                    Profil
+                </a>
+                {# TODO Script pour lien href
+                        <li><a href="{{ path('nom_de_route') }}">Profil</a></li>
+                #}
+
+                <a class="navbar-item"
+                   href="{{ path('app_logout') }}">Logout
+                </a>
+            </div>
+        </div>
     </nav>
 </header>
 
@@ -40,6 +66,7 @@
 
 
 {% endblock %}
+<script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 <footer>
