@@ -21,16 +21,44 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username')
-            ->add('email', EmailType::class)
-            ->add('firstName')
-            ->add('lastName')
-            ->add('phoneNumber')
+
+            ->add('username', null, [
+                'attr' => ["class" => "app_register form text username",
+                ],
+                "required" => true,
+                "label"=> false
+            ])
+
+            ->add('email', EmailType::class,
+            ["attr"=>["class"=>"app_register form email"],
+                "label"=> false
+            ])
+
+            ->add('firstName', null, [
+                'attr'=>["class"=>"app_register form text firstName"],
+                "label"=> false,
+                "required"=>true])
+
+            ->add('lastName', null, [
+                "attr"=>["class"=>"app_register form text lastName"],
+                "required"=>true,
+                "label"=> false
+            ])
+
+            ->add('phoneNumber', null, [
+                "attr"=>["class"=>"app_register form text phoneNumber"],
+                "label"=> false
+            ])
+
             ->add('campus', EntityType::class,
                     ["class"=>Campus::class,
-                        "choice_label"=>"name"])
+                        "choice_label"=>"name",
+                        "label"=> false,
+                        "attr"=>["class"=>"app_register form entityCampus"]])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                "label" => "Veuillez accepter les termes de confidentialité :",
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
@@ -41,7 +69,9 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                "label"=> false,
+                'attr' => ['autocomplete' => 'new-password',
+                    "class"=>"app_register form password"],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',

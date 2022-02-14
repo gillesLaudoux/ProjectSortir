@@ -1,19 +1,73 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HANG OUT | {% endblock %}</title>
+    {% block CSS %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="{{ asset('CSS/Base.css') }}">
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+</head>
+<body>
+
+<header>
+
+
+    {# TODO prevoir onglets villes et sites pour l'admin #}{#
+    #}{# TODO Script pour lien href
+                        <li><a href="{{ path('nom_de_route') }}">Login</a></li>
+    #}
+
+    <!------NAVBAR------>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <h1>Hang Out</h1>
+                {% if app.user %}
+                    <p>Hey {{ app.user.username }} !</p>
+                {% endif %}
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample" >
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item"
+                        href="{{ path('night_out_filter') }}">Home
+                </a>
+
+                <a class="navbar-item">
+                    Profil
+                </a>
+                {# TODO Script pour lien href
+                        <li><a href="{{ path('nom_de_route') }}">Profil</a></li>
+                #}
+
+                <a class="navbar-item"
+                   href="{{ path('app_logout') }}">Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+{% block body %}
+
+
+{% endblock %}
+<script src="{{ asset('js/script.js') }}"></script>
+</body>
+
+<footer>
+    <p>Hang Out - Copyright 2022</p>
+</footer>
 </html>

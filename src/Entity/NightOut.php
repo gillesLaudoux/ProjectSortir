@@ -31,7 +31,10 @@ class NightOut
     #[ORM\Column(type: 'integer', nullable: true)]
     private $nbInscriptionMax;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'nightOuts')]
+    #[ORM\Column(type: 'string', length: 500)]
+    private $description;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'nightsOut')]
     private $participants;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'nightsOutOrganizer')]
@@ -53,6 +56,8 @@ class NightOut
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'nightOuts')]
     #[ORM\JoinColumn(nullable: false)]
     private $category;
+
+
 
     public function __construct()
     {
@@ -221,4 +226,22 @@ class NightOut
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->category . $this->campus . $this->places ;
+    }
+
 }

@@ -1,0 +1,170 @@
+.loginform {
+
+    /*margin-top: 170px;*/
+    margin-top: 8%;
+}
+
+.loginform .divlogin {
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(135, 206, 250, 0.1);
+    box-shadow: 0 6px 20px -5px rgba(135, 206, 250, 0.15);
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-top: 1.5%;
+    padding-bottom: 4%;
+    border-radius: 5%;
+}
+
+.loginform .divlogin {
+    display: flex;
+}
+
+.loginform .divlogin h1 {
+    color: #134A80;
+    /*padding-bottom: 20px;*/
+    padding-bottom: 3%;
+    font-size: 2.5em;
+}
+
+.loginform .divlogin .sousdivlogin {
+    /*padding-top: 10px;*/
+    padding-top: 3%;
+
+}
+
+/*.loginform .divlogin .sousdivlogin .pseudolabel{*/
+/*    margin-right: 20px;*/
+
+/*}*/
+
+.loginform .divlogin .sousdivlogin .pseudoinput {
+    /*width: 250px;*/
+    width: 50%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: white;
+    color: black;
+    font-size: 1.3em;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 20px -20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: text;
+}
+
+/*.loginform .divlogin .sousdivlogin .mdplabel{*/
+/*    margin-right: 20px;*/
+/*}*/
+
+.loginform .divlogin .sousdivlogin .mdpinput {
+    width: 50%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: white;
+    color: black;
+    font-size: 1.3em;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 20px -20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: text;
+
+}
+
+.loginform .divlogin .sousdivlogin .sousdivbutton {
+    padding-top: 20px;
+}
+
+.loginform .divlogin .sousdivlogin .submitbt {
+
+    width: 50%;
+    height: 55px;
+    border: none;
+    outline: none;
+    background: #134A80;
+    color: white;
+    font-size: 2em;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 10px;
+
+}
+
+.loginform .divlogin .sousdivlogin button {
+    /*margin-top: 30px;*/
+    margin-top: 6%;
+}
+
+.loginform .divlogin .sousdivlogin button:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    background: #114273;
+    color: #bf8a3d;
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 640px) {
+
+    nav ul{
+        display: none;
+        width: 50%;
+    }
+    .heysalut {
+        display: none;
+    }
+
+    .loginform .divlogin {
+        margin-top: 25%;
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    .loginform .divlogin .sousdivlogin .sousdivbutton {
+        padding-bottom: 10%;
+    }
+
+    .loginform .divlogin .sousdivlogin .submitbt{
+        font-size: 1.6em;
+    }
+
+    .loginform .divlogin h1{
+        font-size: 2em;
+        margin-right: 20%;
+    }
+
+    label {
+        display: flex;
+        margin-right: 10%;
+        font-size: 2em;
+        color: white;
+    }
+    .burger
+    {
+        height: 50px;
+    }
+
+    nav .burger li {
+        width: 50%;
+    }
+
+    #toggle:checked + .burger {
+        display: block;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+
+
+
+
+
