@@ -19,5 +19,13 @@
     <input type="reset" value="Annuler">
     {{ form_end(formNight) }}
 
+    {% for success in app.flashes('success') %}
+        {{ success }}
+    {% endfor %}
+
+    {% for fail in app.flashes('fail') %}
+        {{ fail }}
+    {% endfor %}
+
 {% endblock %}
 
