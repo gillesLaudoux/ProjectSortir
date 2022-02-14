@@ -6,6 +6,7 @@ use App\Repository\CampusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CampusRepository::class)]
 class Campus
@@ -15,6 +16,11 @@ class Campus
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Regex("/^[a-z ,.'-]+$/i")]
+    #[Assert\Length(min : 5, max : 100, minMessage: "Le nom du campus doit au moins être de 5 caractères",
+        maxMessage: "Le nom du campus ne peut pas dépasser 100 caractères")]
     #[ORM\Column(type: 'string', length: 100)]
     private $name;
 
@@ -105,6 +111,10 @@ class Campus
         }
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 
 }

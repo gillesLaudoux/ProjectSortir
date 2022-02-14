@@ -6,6 +6,7 @@ use App\Repository\PlacesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PlacesRepository::class)]
 class Place
@@ -15,9 +16,19 @@ class Place
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 5, max: 150, minMessage: "Le lieu ne peut pas avoir moins de 5 caractères",maxMessage: "
+    Le lieu ne peut pas avoir plus de 150 caractères")]
+    #[Assert\Regex("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")]
     #[ORM\Column(type: 'string', length: 150)]
     private $name;
 
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 10, max: 255, minMessage: "La rue ne peut pas avoir moins de 10 caractères",maxMessage: "
+    La rue ne peut pas avoir plus de 255 caractères")]
+    #[Assert\Regex("/^\s*\S+(?:\s+\S+){2}/")]
     #[ORM\Column(type: 'string', length: 255)]
     private $street;
 

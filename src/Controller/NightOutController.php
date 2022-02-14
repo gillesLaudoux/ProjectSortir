@@ -114,10 +114,9 @@ class NightOutController extends AbstractController
 
 
             if ($formNight->isSubmitted() && $formNight->isValid()) {
-
+               // dd('abc');
                 if($isDateValide) {
                 //Vérification des dates pour l'inscription
-
                 /** Si $isDateValide === true -> date 1 inférieure à date deux -> dateValide   */
 
 
@@ -127,6 +126,7 @@ class NightOutController extends AbstractController
                  * portant cet ID en tant oragnisateur de la soirée
                  */
                 $nightOut->setOrganizer($userRepository->find($this->getUser()->getId()));
+                //$nightOut->setOrganizer($this->getUser());
 
                 /**  Linkage des bouttons pour le submit des etats selon les idées */
                 if ($formNight->get('enregistrer')->isClicked()) {

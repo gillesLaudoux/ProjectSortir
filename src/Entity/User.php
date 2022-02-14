@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
@@ -21,7 +22,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotNull]
+    #[Assert\Unique]
+    #[Assert\NotBlank]
+    #[Assert\Length(min : 5, max : 180, minMessage: "Votre pseudo doit au moins être de 5 caractères",
+                    maxMessage: "Votre pseudo ne peut pas dépasser 180 caractères")]
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\Regex("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")]
     private $username;
 
     #[ORM\Column(type: 'json')]
@@ -30,15 +37,49 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[Assert\Email]
+    #[Assert\NotNull]
+    #[Assert\Unique]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 8, max: 50, minMessage: "Votre mail ne peut pas avoir moins de 8 caractères",
+        maxMessage: "Votre mail ne peut pas faire plus de 50 caractères"
+    )]
+    #[Assert\Regex("/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD")]
     #[ORM\Column(type: 'string', length: 50)]
     private $email;
 
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 4, max: 50, minMessage: "Votre prénom ne peut pas avoir moins de 4 caractères",
+        maxMessage: "Votre prénom ne peut pas faire plus de 50 caractères"
+    )]
+    #[Assert\Regex("/^[a-z ,.'-]+$/i")]
     #[ORM\Column(type: 'string', length: 50)]
     private $firstName;
 
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 4, max: 50, minMessage: "Votre nom ne peut pas avoir moins de 4 caractères",
+        maxMessage: "Votre nom ne peut pas faire plus de 50 caractères"
+    )]
+    #[Assert\Regex("/^[a-z ,.'-]+$/i")]
     #[ORM\Column(type: 'string', length: 50)]
     private $lastName;
 
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 8, max: 50, minMessage: "Votre mail ne peut pas avoir moins de 8 caractères",
+        maxMessage: "Votre mail ne peut pas faire plus de 50 caractères"
+    )]
+    #[Assert\Length(
+        min : 10, max: 10, minMessage: "Un numéro de téléphone valide est composé de 10 chiffres", maxMessage: "
+        Un numéro de téléphone valide est composé de 10 chiffres"
+    )]
+    #[Assert\Regex("^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$")]
     #[ORM\Column(type: 'string', length: 10)]
     private $phoneNumber;
 
@@ -57,6 +98,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: Campus::class, inversedBy: 'students')]
     #[ORM\JoinColumn(nullable: false)]
     private $campus;
+
+    #[ORM\OneToOne(targetEntity: Avatar::class, cascade: ['persist', 'remove'])]
+    private $avatar;
+
 
     public function __construct()
     {
@@ -278,6 +323,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 //    {
 //        return $this->campus  ;
 //    }
+
+public function getAvatar(): ?Avatar
+{
+    return $this->avatar;
+}
+
+public function setAvatar(?Avatar $avatar): self
+{
+    $this->avatar = $avatar;
+
+    return $this;
+}
 
 
 }

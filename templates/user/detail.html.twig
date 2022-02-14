@@ -1,14 +1,55 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ parent() }}Mon Profil{% endblock %}
+
+{% block CSS %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/detailuser.css') }}">
+{% endblock %}
+
 {% block body %}
 
-    <h1>Mon profil !</h1>
+    <div class="detailuser">
 
-    <p>Pseudo : {{ user.username }}</p>
-    <p>Prénom : {{ user.firstName }}</p>
-    <p>Nom de famille : {{ user.lastName }}</p>
-    <p>Numéro de téléphone : {{ user.phoneNumber }}</p>
-    <p>Email : {{ user.email }}</p>
-    <p>Campus ENI : {{ user.campus.name }}</p>
+        <h1>Mon Profil </h1>
+
+        <div class="infos">
+
+            <div class="info">
+                <p>Pseudo : {{ user.username }}</p>
+            </div>
+
+            <div class="info">
+                <p>Prénom : {{ user.firstName }}</p>
+            </div>
+
+            <div class="info">
+                <p>Nom : {{ user.lastName }}</p>
+            </div>
+
+            <div class="info">
+                <p>Téléphone : {{ user.phoneNumber }}</p>
+            </div>
+
+            <div class="info">
+                <p>Email : {{ user.email }}</p>
+            </div>
+
+            <div class="info">
+                <p>Campus : {{ user.campus.name }}</p>
+            </div>
+        </div>
+
+
+        {% if app.user == user %}
+            <a href="{{ path('modify', {'username': app.user.username}) }}">
+                <button> Modifier</button>
+            </a>
+
+        {% endif %}
+
+    </div>
+    <img src="{{ asset("uploads/avatar/" ~ user.avatar.AvatarFileName) }}" alt="Ma photo">
+
 
 {% endblock %}

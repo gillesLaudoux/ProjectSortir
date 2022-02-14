@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Login or Register{% endblock %}
+
+{% block CSS %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/mainpage.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="mainpagecontent">
+        <div class="bloctitre">
+            <div class="titreappli">
+                <h1>Hang Out</h1>
+            </div>
+            <div class="logoappli">
+                <img src="{{ asset('images/MicrosoftTeams-image (1).png') }}" alt="">
+            </div>
+            <div class="descriptionappli">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aperiam ducimus illum inventore non
+                    quaerat, quidem velit.t amet, consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="blocbouton">
+            <button class="login">
+                <a href="{{ path('app_login') }}">Login</a>
+            </button>
+            <button class="register">
+                <a href="{{ path('app_register') }}">Register</a>
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

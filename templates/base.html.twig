@@ -26,13 +26,11 @@
         <div class="navbar-brand">
             <a class="navbar-item" href="https://bulma.io">
                 <h1>Hang Out</h1>
-                {% if app.user %}
-                    <p>Hey {{ app.user.username }} !</p>
-                {% endif %}
+
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-               data-target="navbarBasicExample" >
+               data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -42,15 +40,24 @@
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item"
-                        href="{{ path('night_out_filter') }}">Home
+                {% if app.user %}
+                    <p>Hey {{ app.user.username }} !</p>
+                {% endif %}
                 </a>
 
-                <a class="navbar-item">
-                    Profil
+                <a class="navbar-item"
+                   href="{{ path('night_out_filter') }}">Home
                 </a>
-                {# TODO Script pour lien href
-                        <li><a href="{{ path('nom_de_route') }}">Profil</a></li>
-                #}
+
+                {#                faire le chemin profil avec id #}
+                <a class="navbar-item"
+                {% if app.user %}
+
+                    <a href="{{ path('detail', {'id': app.user.id}) }}">Profil</a>
+
+
+                {% endif %}
+                </a>
 
                 <a class="navbar-item"
                    href="{{ path('app_logout') }}">Logout

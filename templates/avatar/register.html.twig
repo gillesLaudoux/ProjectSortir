@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choisi ta photo de profil{% endblock %}
+
+{% block body %}
+
+    {# TODO Faire les champs pour l'insertion d'avatar  #}
+    {{ form_start(avatarForm) }}
+    {{ form_row(avatarForm.AvatarFileName) }}
+    {{ form_row(avatarForm.AvatarFileType) }}
+    {{ form_row(avatarForm.Avatar) }}
+
+    <button>Envoyer</button>
+    {{ form_end(avatarForm) }}
+
+{% endblock %}
