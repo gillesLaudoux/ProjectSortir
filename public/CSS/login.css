@@ -111,16 +111,11 @@
 /*RESPONSIVE*/
 @media screen and (max-width: 640px) {
 
-    nav ul{
-        display: none;
-        width: 50%;
-    }
-    .heysalut {
-        display: none;
-    }
+
+
 
     .loginform .divlogin {
-        margin-top: 25%;
+        margin-top: 35%;
         margin-left: 6%;
         margin-right: 6%;
     }
@@ -129,11 +124,11 @@
         padding-bottom: 10%;
     }
 
-    .loginform .divlogin .sousdivlogin .submitbt{
+    .loginform .divlogin .sousdivlogin .submitbt {
         font-size: 1.6em;
     }
 
-    .loginform .divlogin h1{
+    .loginform .divlogin h1 {
         font-size: 2em;
         margin-right: 20%;
     }
@@ -144,21 +139,10 @@
         font-size: 2em;
         color: white;
     }
-    .burger
-    {
-        height: 50px;
-    }
 
-    nav .burger li {
-        width: 50%;
-    }
-
-    #toggle:checked + .burger {
-        display: block;
-    }
 
     footer {
-        position: absolute;
+        position: fixed;
         bottom: 0;
     }
 }

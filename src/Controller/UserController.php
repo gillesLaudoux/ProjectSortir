@@ -84,4 +84,11 @@ class UserController extends AbstractController
     );
     }
 
+    #[Route('/loginorregister', name: '')]
+    public function mainpage(
+    ): Response
+    {
+        return $this->render('user/mainpage.html.twig');
+  }
+
 }

@@ -14,19 +14,19 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username',null, ["label" => "Pseudo : "])
+            ->add('username',null, ["label" => false])
             //->add('roles')
             //->add('password')
-            ->add('email', null, ["label" => "Email : "])
-            ->add('firstName', null, ["label" => "Prénom : "])
-            ->add('lastName',null, ["label" => "Nom de famille : "])
-            ->add('phoneNumber',null, ["label" => "Numéro de téléphone : "])
+            ->add('email', null, ["label" => false])
+            ->add('firstName', null, ["label" => false])
+            ->add('lastName',null, ["label" => false])
+            ->add('phoneNumber',null, ["label" => false])
             //->add('administrator')
             //->add('isActivated')
             //->add('nightsOut')
             ->add('campus',EntityType::class,
                 ['class'=>Campus::class,
-                    "label" => "Campus ENI : "]);
+                    "label" => false]);
 
 
     }

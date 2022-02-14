@@ -1,25 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Modifier mon profil {% endblock %}
+{% block title %}{{ parent() }}Change Profil{% endblock %}
+
+{% block CSS %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/modifyuser.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Modifier mon profil</h1>
 
-    {{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.firstName) }}
-    {{ form_row(form.lastName) }}
-    {{ form_row(form.phoneNumber) }}
-    {{ form_row(form.email) }}
+    <div class="modifprofil">
+    <h1>Modifier mon profil</h1>
+    <div class="infos">
+        <div class="info">
+            {{ form_start(form) }}
+        </div>
+
+        <div class="info">
+            {{ form_row(form.username) }}
+        </div>
+
+        <div class="info">
+            {{ form_row(form.firstName) }}
+        </div>
+
+        <div class="info">
+            {{ form_row(form.lastName) }}
+        </div>
+
+        <div class="info">
+            {{ form_row(form.phoneNumber) }}
+        </div>
+
+        <div class="info">
+            {{ form_row(form.email) }}
+        </div>
+        <div class="info">
+            {{ form_row(form.campus) }}
+        </div>
+
+
 
 
     <button type="submit" class="btn">Enregistrer</button>
     {{ form_end(form) }}
 
+
+
     {% for success in app.flashes('success') %}
         {{ success }}
     {% endfor %}
-
+    </div>
 
 {% endblock %}
-

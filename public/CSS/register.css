@@ -9,12 +9,12 @@ body {
     text-align: center;
     background-color: rgba(135,206,250,0.1);
     box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
-    margin-left: 700px;
-    margin-right: 700px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    border-radius: 20px;
-    margin-top: 2%;
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-top: 1.5%;
+    padding-bottom:1.5%;
+    border-radius: 5%;
+    margin-top: 1%;
 }
 
 h1{
@@ -23,6 +23,7 @@ h1{
      padding-bottom: 3%;
      font-size: 2.5em;
  }
+
 .sousdivregister{
     padding-top: 3.5%;
 
@@ -31,7 +32,7 @@ h1{
 
 
 div input{
-    width: 50%;
+    width: 70%;
     height: 40px;
     border: none;
     outline: none;
@@ -47,7 +48,7 @@ div input{
 }
 
 div select{
-    width: 50%;
+    width: 70%;
     height: 40px;
     border: none;
     outline: none;
@@ -63,6 +64,16 @@ div select{
 
 .sousdivregister label{
     font-size: 15px;
+    width: 100px;
+}
+
+div label{
+
+}
+#registration_form_agreeTerms{
+    width: 20px;
+    height: 15px;
+    vertical-align: middle;
 
 }
 
@@ -92,6 +103,33 @@ div select{
     transition: 0.5s;
     background: #114273;
     color: #bf8a3d;
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 640px) {
+
+    .divregister{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: rgba(135,206,250,0.1);
+        box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
+        margin-left: 6%;
+        margin-right: 6%;
+        padding-top: 1.5%;
+        padding-bottom:1.5%;
+        border-radius: 5%;
+        margin-top: 8%;
+    }
+
+    h1{
+        font-size: 2em;
+    }
+
+
+    .sousdivregister{
+        padding-top: 3%;
+    }
 }
 
 
