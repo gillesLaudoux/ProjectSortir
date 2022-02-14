@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Avatar;
 use App\Form\AvatarType;
+use App\Repository\AvatarRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -20,7 +22,8 @@ class AvatarController extends AbstractController
     public function avatarRegister(
         Request $request,
         SluggerInterface $slugger,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        UserRepository $userRepository
     ): Response
     {
         $avatar = new Avatar();
@@ -28,6 +31,8 @@ class AvatarController extends AbstractController
         $avatarForm->handleRequest($request);
 
         if ($avatarForm->isSubmitted() && $avatarForm->isValid()) {
+
+            $user = $userRepository->find($this->getUser()->getId());
             /** @var UploadedFile $avatarFile */
             $avatarFile = $avatarForm->get('Avatar')->getData();
             dump('lol');
@@ -52,10 +57,13 @@ class AvatarController extends AbstractController
                 // updates the 'avatarFilename' property to store the file name
                 // instead of its contents
                 $avatar->setAvatarFileName($newFilename);
+
+                $user->setAvatar($avatar);
                 dump('3');
             }
             // ... persist the $product variable or any other work
             $entityManager->persist($avatar);
+            $entityManager->persist($user);
             $entityManager->flush();
 
             $this->addFlash('success', 'Vous avez bien ajouté votre photo !');
