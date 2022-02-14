@@ -28,14 +28,16 @@ class AddRemoveNightOut
 
         $user = $this->userRepository->find($idUser); // on va chercher l'user en db
 
-        $userNightsOut = $user->getNightsOut(); // on récupére la liste des NightOut auxquelles participe l'user
+        $userNightsOut = $user->getNightsOut(); // on récupère la liste des NightOut auxquelles participe l'user
 
         if($userNightsOut->contains($nightOut)) { /* in_array retourne true si l'objet est dans l'array */
 
             $user->removeNightOut($nightOut);
 
-        } else {
-            /* Si l'objet n'est pas dans le tableau, on l'y ajoute */
+        } elseif (new \DateTime() < $nightOut->getDueDateInscription()) // vérifie que la date de fin d'inscription n'est
+                                                                        // pas atteinte "cloture inscription"
+        {
+            /* On ajoute la sortie au tableau de l'user, on inscrit l'user à la sortie */
             $user->addNightOut($nightOut);
         }
 
