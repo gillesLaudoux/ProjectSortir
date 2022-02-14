@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Campus;
+use App\Entity\File;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
@@ -26,8 +28,13 @@ class UserType extends AbstractType
             //->add('nightsOut')
             ->add('campus',EntityType::class,
                 ['class'=>Campus::class,
-                    "label" => false]);
-
+                    "label" => false])
+            ->add('image',
+                EntityType::class,
+                [
+                    'class'=>File::class,
+                    //'image_uri' =>true,
+                ]);
 
     }
 

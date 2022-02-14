@@ -58,6 +58,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private $campus;
 
+    #[ORM\OneToOne(targetEntity: Avatar::class, cascade: ['persist', 'remove'])]
+    private $avatar;
+
+
     public function __construct()
     {
         $this->nightsOut = new ArrayCollection();
@@ -278,6 +282,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 //    {
 //        return $this->campus  ;
 //    }
+
+public function getAvatar(): ?Avatar
+{
+    return $this->avatar;
+}
+
+public function setAvatar(?Avatar $avatar): self
+{
+    $this->avatar = $avatar;
+
+    return $this;
+}
 
 
 }
