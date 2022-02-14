@@ -35,7 +35,7 @@ class AddRemoveNightOut
             $user->removeNightOut($nightOut);
 
         } elseif (new \DateTime() < $nightOut->getDueDateInscription() &&
-            $nightOut->getParticipants()->count()<$nightOut->getNbInscriptionMax())
+            $nightOut->getParticipants()->count() < $nightOut->getNbInscriptionMax())
             /* vérifie que la date de fin d'inscription n'est pas atteinte ainsi que le nobre max
             de participants "cloture inscription" */
         {
