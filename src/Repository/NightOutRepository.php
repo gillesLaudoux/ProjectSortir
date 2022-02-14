@@ -49,6 +49,7 @@ class NightOutRepository extends ServiceEntityRepository
             ->innerJoin("n.organizer", "org")
             ->innerJoin("pl.city", "ci")
             ->where('cam.name = :name')
+            ->andWhere("s.id = '2'") // affiche que les night_out ouvertes
             ->andWhere('n.name LIKE :nightOutName')
             ->andWhere('n.startingTime > :startingTime')
             ->andWhere('n.dueDateInscription < :endTime')

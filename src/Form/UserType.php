@@ -26,6 +26,7 @@ class UserType extends AbstractType
             //->add('nightsOut')
             ->add('campus',EntityType::class,
                 ['class'=>Campus::class,
+                    "expanded"=>true,
                     "label" => "Campus ENI : "]);
 
 
