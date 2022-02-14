@@ -6,7 +6,7 @@ use App\Repository\NightOutRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: NightOutRepository::class)]
 class NightOut
@@ -16,22 +16,42 @@ class NightOut
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(min : 5, max : 250, minMessage: "Le nom de la sortie doit au moins être de 5 caractères",
+        maxMessage: "Le nom de la sortie ne peut pas dépasser 250 caractères")]
+    #[Assert\Regex("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")]
     #[ORM\Column(type: 'string', length: 250)]
     private $name;
 
+    #[Assert\DateTime]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\LessThan(new \DateTime())]
     #[ORM\Column(type: 'datetime')]
     private $startingTime;
 
+    //TODO : supprimer la duration, en faire une colonne ending_time, en datetime
     #[ORM\Column(type: 'integer', nullable: true)]
     private $duration;
 
+    #[Assert\DateTime]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\GreaterThan(new \DateTime())]
     #[ORM\Column(type: 'datetime')]
     private $dueDateInscription;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\Type(type: 'integer', message: "Accepte que les entiers")]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
     private $nbInscriptionMax;
 
-    #[ORM\Column(type: 'string', length: 500)]
+    #[Assert\Length(min:10, max: 500, minMessage: "Votre description n'est pas assez longue", maxMessage: "
+    Votre description est trop longue !")]
+    #[Assert\Regex("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")]
+    #[ORM\Column(type: 'string', length: 500, nullable: true)]
     private $description;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'nightsOut')]
