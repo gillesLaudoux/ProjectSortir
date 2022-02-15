@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\NightOut;
 use App\Form\NightOutType;
 use App\Form\NightOutUpdateType;
+use App\Form\ParticiperNightOutType;
 use App\Repository\StateRepository;
 use App\Repository\CampusRepository;
 use App\Repository\NightOutRepository;
@@ -85,11 +86,14 @@ class NightOutController extends AbstractController
 
         }
 
+        $formParticiper = $this->createForm(ParticiperNightOutType::class);
+        $formParticiper->handleRequest($request);
+
         // Requête permettant de sélectionner tous les articles (avec des inner joins) si le formulaire de filtre
         // n'est pas utilisé
 
-        return $this->render('main/index.html.twig',
-            compact("nightOutList", "campusList")
+        return $this->renderForm('main/index.html.twig',
+            compact("nightOutList", "campusList","formParticiper")
         );
     }
 
