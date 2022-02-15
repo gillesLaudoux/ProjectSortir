@@ -1,16 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Choisi ta photo de profil{% endblock %}
+{% block title %}{{ parent() }}Ma Photo{% endblock %}
+
+{% block CSS %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/avatarphoto.css') }}">
+{% endblock %}
 
 {% block body %}
 
     {# TODO Faire les champs pour l'insertion d'avatar  #}
-    {{ form_start(avatarForm) }}
-    {{ form_row(avatarForm.AvatarFileName) }}
-    {{ form_row(avatarForm.AvatarFileType) }}
-    {{ form_row(avatarForm.Avatar) }}
+    <div class="divupload">
+        <h1>Ajouter ma photo</h1>
+        {{ form_start(avatarForm) }}
+        <div class="sousdivupload">
+            {{ form_row(avatarForm.AvatarFileName) }}
+        </div>
+        <div class="sousdivupload">
+            {{ form_row(avatarForm.AvatarFileType) }}
+        </div>
+        <div class="sousdivupload">
+            {{ form_row(avatarForm.Avatar) }}
+        </div>
 
-    <button>Envoyer</button>
-    {{ form_end(avatarForm) }}
+            <button>Envoyer</button>
 
+
+        {{ form_end(avatarForm) }}
+    </div>
 {% endblock %}

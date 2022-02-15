@@ -38,6 +38,13 @@
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}">
 
+
+            <div class="rememberme">
+                <label>
+                    Keep me logged in
+                    <input type="checkbox" name="_remember_me" checked/>
+                </label>
+            </div>
             {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
             See https://symfony.com/doc/current/security/remember_me.html
@@ -58,7 +65,7 @@
         </div>
     </form>
     <p>----------------------------------</p>
-    <p>ajouter remember me et MDP oublié</p>
+    <p>ajouter MDP oublié</p>
     <p>----------------------------------</p>
 
 {% endblock %}

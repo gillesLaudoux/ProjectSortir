@@ -39,7 +39,7 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item"
+                <a class="navbar-itemhey"
                 {% if app.user %}
                     <p>Hey {{ app.user.username }} !</p>
                 {% endif %}
@@ -49,18 +49,19 @@
                    href="{{ path('night_out_filter') }}">Home
                 </a>
 
-                {#                faire le chemin profil avec id #}
                 <a class="navbar-item"
                 {% if app.user %}
-
                     <a href="{{ path('detail', {'id': app.user.id}) }}">Profil</a>
-
-
                 {% endif %}
                 </a>
 
                 <a class="navbar-item"
+                        {% if app.user %}
                    href="{{ path('app_logout') }}">Logout
+                    {% endif %}
+                    {% if not app.user %}
+                        href="{{ path('app_login') }}">Login
+                    {% endif %}
                 </a>
             </div>
         </div>
