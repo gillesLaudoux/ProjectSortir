@@ -11,12 +11,13 @@ class AddRemoveNightOut
 {
 
     public function __construct(NightOutRepository $nightOutRepository, UserRepository $userRepository,
-                                EntityManagerInterface $em, Security $security){
+                                EntityManagerInterface $em, Security $security, verifdate $verif){
 
         $this->nightOutRepository = $nightOutRepository;
         $this->userRepository = $userRepository;
         $this->em = $em;
         $this->security = $security;
+        $this->verif = $verif;
     }
 
     public function exec ($idNightOut) : void
@@ -26,9 +27,12 @@ class AddRemoveNightOut
         $nightOut = $this->nightOutRepository->find($idNightOut); // on va cherche en db la NightOut à laquelle on veut
         // ajouter un user
 
+
+
+
         $user = $this->userRepository->find($idUser); // on va chercher l'user en db
 
-        $userNightsOut = $user->getNightsOut(); // on récupère la liste des NightOut auxquelles participe l'user
+        $userNightsOut = $user->getNightsOut(); // on récupére la liste des NightOut auxquelles participe l'user
 
         if($userNightsOut->contains($nightOut)) { /* in_array retourne true si l'objet est dans l'array */
 
@@ -48,5 +52,6 @@ class AddRemoveNightOut
         $this->em->flush();
 
     }
+
 
 }

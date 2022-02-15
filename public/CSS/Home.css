@@ -1,0 +1,104 @@
+/*  page d'accueil user connecté   */
+
+
+
+
+
+/* PC*/
+@media (min-width: 800px) {
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        margin-top: 1vh;
+        min-height: 86vh;
+        max-height: 86vh;
+
+    }
+
+    .resultats {
+        grid-area: 1 / 2 / 6 / 6;
+        /*-webkit-border-radius: 0 20px 20px 0;*/
+        /*-moz-border-radius: 0 20px 20px 0;*/
+        /*border-radius: 0 20px 20px 0;*/
+        margin-left: 24vw;
+        overflow: scroll;
+        overflow-x: hidden;
+
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: rgba(108, 108, 108, 0.4);
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #dfdfdf;
+        border-radius: 10px;
+    }
+
+    .filtres {
+        grid-area: 1 / 1 / 6 / 2;
+        /*-webkit-border-radius: 20px 0 0 20px;*/
+        /*-moz-border-radius: 20px 0 0 20px;*/
+        /*border-radius: 20px 0 0 20px;*/
+
+    }
+
+    .barderecherche {
+        margin-left: 2.2vw;
+        padding-bottom: 20px;
+    }
+
+    .titre {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .card {
+        width: 300px;
+        margin : 0 0 6vh 0.4vw;
+        top: 0;
+        max-height: 12.5vh;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        max-height: 23vh;
+        transition-duration: 1s ;
+    }
+
+
+    .couleur {
+        width: 700px;
+        height: 94vh;
+        background-color: #adadad;
+        position: absolute;
+    }
+
+.envResultats  {
+    margin-top: 4.5vh;
+}
+.envoyer {
+margin: 2vh 0 0 4.4vw;
+}
+
+.filtre1 .filtre2 .filtre3 .campus  {
+    margin-top: 4vh;
+}
+
+.envFiltres{
+    margin-top: 15vh;
+}
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+
+}
