@@ -24,7 +24,7 @@ class Avatar
     #[Assert\NotNull]
     #[Assert\NotBlank]
     #[Assert\Length(max: 255, maxMessage: "Le format de fichier est trop long")]
-    #[Assert\Regex("/^[a-z ,.'-]+$/i")]
+    //#[Assert\Regex("/^[a-z ,.'-]+$/i")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $AvatarFileType;
 
@@ -55,5 +55,10 @@ class Avatar
         $this->AvatarFileType = $AvatarFileType;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+
     }
 }

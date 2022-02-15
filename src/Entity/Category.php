@@ -18,7 +18,7 @@ class Category
 
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[Assert\Regex("/^[a-z ,.'-]+$/i")]
+    //#[Assert\Regex("/^[a-z ,.'-]+$/i")]
     #[Assert\Length(min : 5, max : 255, minMessage: "Le nom de la catégorie doit au moins être de 5 caractères",
         maxMessage: "Le nom de la catégorie ne peut pas dépasser 255 caractères")]
     #[ORM\Column(type: 'string', length: 255)]
@@ -79,8 +79,8 @@ class Category
         return $this;
     }
 
-//        public function __toString()
-//    {
-//        return $this->campus  ;
-//    }
+        public function __toString()
+    {
+        return $this->libelle  ;
+    }
 }

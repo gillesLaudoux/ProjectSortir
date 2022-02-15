@@ -20,13 +20,13 @@ class City
     #[Assert\NotBlank]
     #[Assert\Length(min : 5, max : 100, minMessage: "Le nom de la ville doit au moins être de 5 caractères",
         maxMessage: "Le nom de la ville ne peut pas dépasser 100 caractères")]
-    #[Assert\Regex("/^[a-z ,.'-]+$/i")]
+    //#[Assert\Regex("/^[a-z ,.'-]+$/i")]
     #[ORM\Column(type: 'string', length: 100)]
     private $name;
 
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[Assert\Regex("(?:0[1-9]|[13-8][0-9]|2[ab1-9]|9[0-5])(?:[0-9]{3})?|9[78][1-9](?:[0-9]{2})?")]
+    //#[Assert\Regex("(?:0[1-9]|[13-8][0-9]|2[ab1-9]|9[0-5])(?:[0-9]{3})?|9[78][1-9](?:[0-9]{2})?")]
     #[ORM\Column(type: 'string', length: 5)]
     private $zipCode;
 

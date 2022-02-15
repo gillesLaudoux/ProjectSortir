@@ -20,19 +20,20 @@ class NightOut
     #[Assert\NotBlank]
     #[Assert\Length(min : 5, max : 250, minMessage: "Le nom de la sortie doit au moins être de 5 caractères",
         maxMessage: "Le nom de la sortie ne peut pas dépasser 250 caractères")]
-    #[Assert\Regex("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")]
+    //TODO REFAIRE les regex ou les vérifier
+    //#[Assert\Regex("#^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$#")]
     #[ORM\Column(type: 'string', length: 250)]
     private $name;
 
-    #[Assert\DateTime]
+
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[Assert\LessThan(new \DateTime())]
+    #[Assert\GreaterThan(new \DateTime())]
     #[ORM\Column(type: 'datetime')]
     private $startingTime;
 
 
-    #[Assert\DateTime]
+
     #[Assert\NotNull]
     #[Assert\NotBlank]
     #[Assert\GreaterThan(new \DateTime())]
@@ -47,7 +48,7 @@ class NightOut
 
     #[Assert\Length(min:10, max: 500, minMessage: "Votre description n'est pas assez longue", maxMessage: "
     Votre description est trop longue !")]
-    #[Assert\Regex("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")]
+    //#[Assert\Regex("#^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$#")]
     #[ORM\Column(type: 'string', length: 500, nullable: true)]
     private $description;
 
@@ -249,7 +250,7 @@ class NightOut
 
     public function __toString()
     {
-        return $this->category . $this->campus . $this->places ;
+        return $this->category . $this->campus;// . $this->places ;
     }
 
     public function getEndingTime(): ?\DateTimeInterface

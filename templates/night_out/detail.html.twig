@@ -12,6 +12,9 @@
     <p>Description : {{ nightOut.description }}</p>
     <p>Campus : {{ nightOut.campus.name }}</p>
     <p>Lieu : {{ nightOut.places.name }}</p>
+    <p>Rue :{{ nightOut.places.street }} </p>
+    <p>Ville :{{ nightOut.places.city.name }} </p>
+    <p>Code Postal :{{ nightOut.places.city.zipcode }} </p>
     <p>Type d'événement : {{ nightOut.category.libelle }}</p>
 
 {% endblock %}

@@ -18,7 +18,7 @@ class Campus
 
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[Assert\Regex("/^[a-z ,.'-]+$/i")]
+    //#[Assert\Regex("/^[a-z ,.'-]+$/i")]
     #[Assert\Length(min : 5, max : 100, minMessage: "Le nom du campus doit au moins être de 5 caractères",
         maxMessage: "Le nom du campus ne peut pas dépasser 100 caractères")]
     #[ORM\Column(type: 'string', length: 100)]
