@@ -1,0 +1,9 @@
+.divcreate{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(135,206,250,0.1);
+    box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
+    margin-left: 35%;
+    margin-right: 35%;
+}
