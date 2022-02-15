@@ -65,13 +65,13 @@
         width: 300px;
         margin : 0 0 6vh 0.4vw;
         top: 0;
-        max-height: 15vh;
+        max-height: 12.5vh;
         overflow: hidden;
     }
 
     .card:hover {
         max-height: 23vh;
-        transition-duration: 0.5s ;
+        transition-duration: 1s ;
     }
 
 

@@ -69,17 +69,18 @@
 
                 <div class="card" style="margin-top: 1vh">
 
-                     {{ nightOut.name }}<br>
-                     {{ nightOut.campus.name }}<br>
-                     {{ nightOut.startingTime | date }}<br>
-                     le {{ nightOut.dueDateInscription | date('d/m/Y à H:i') }}<br>
-                     {{ nightOut.nbInscriptionMax }}<br>
+                     {{ nightOut.name }} par <a href="../user/detail/{{ nightOut.organizer.id }}">{{ nightOut.organizer.username }}</a><br>
+                     campus {{ nightOut.campus.name }}<br>
+                     le : {{ nightOut.startingTime | date }}<br>
+                     fin des inscriptions le {{ nightOut.dueDateInscription | date('d/m/Y à H:i') }}<br>
+                     Nombre de places : {{ nightOut.nbInscriptionMax }}<br>
 {#                     {{ nightOut.state.libelle }}<br>#}
-                     {{ nightOut.organizer.username }}<br>
+
                      {# quand l'utilisateur sera connecté je serais si il est insrit #}
                      {#            {% if nightOut in app.user.nightsOut %} #}
                      {#                <li>est incrit : ok</li> #}
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cumque debitis dolores exercitationem, molestias, nemo nihil quidem reiciendis rem repellat repellendus saepe, tempora. Animi atque molestias obcaecati provident quaerat qui.
+                    {{ form_start(formParticiper) }}
+                    {{ form_end(formParticiper) }}
                 </div>
 
                 {% endfor %}
