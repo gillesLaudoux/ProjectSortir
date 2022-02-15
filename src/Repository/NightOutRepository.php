@@ -48,15 +48,19 @@ class NightOutRepository extends ServiceEntityRepository
             ->innerJoin("n.participants", "p")
             ->innerJoin("n.organizer", "org")
             ->innerJoin("pl.city", "ci")
-            ->where('cam.name = :name')
-            ->andWhere("s.id = '2'") // affiche que les night_out ouvertes
+            ->where("s.id = '2'")// affiche que les night_out ouvertes
             ->andWhere('n.name LIKE :nightOutName')
             ->andWhere('n.startingTime > :startingTime')
             ->andWhere('n.dueDateInscription < :endTime')
-            ->setParameter("name", $campusName)
             ->setParameter("nightOutName", $nightOutName)
             ->setParameter("startingTime", $startDate)
             ->setParameter("endTime", $endDate);
+
+        if(!is_null($campusName)){
+            $qb->andWhere('cam.name = :name')
+                ->setParameter("name", $campusName);
+        }
+
         /* Si l'id d'un organizer est donné, on sélectionne que les NightOut qu'il organise */
         if(!is_null($idOrganizer)){
             dump("Repos add option idOrganizer");

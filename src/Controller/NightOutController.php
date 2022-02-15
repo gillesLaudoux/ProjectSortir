@@ -129,7 +129,9 @@ class NightOutController extends AbstractController
                 /** Recupération de l'ID de la personne co en passant par le Repository afin d'assigner l'objet Organisateur
                  * portant cet ID en tant oragnisateur de la soirée
                  */
-                $nightOut->setOrganizer($userRepository->find($this->getUser()->getId()));
+                $user = $userRepository->find($this->getUser()->getId());
+                $nightOut->setOrganizer($user);
+                $nightOut->addParticipant($user);
                 //$nightOut->setOrganizer($this->getUser());
 
                 /**  Linkage des bouttons pour le submit des etats selon les idées */

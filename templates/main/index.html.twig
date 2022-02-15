@@ -44,7 +44,7 @@
 
                 <div class="campus"><label for="filter_night_out_campus">Campus :</label>
                 <select name="filter_night_out_campus" id="filter_night_out_campus">
-
+                    <option value="" selected disabled hidden>Sélectionner un campus</option>
                     {% for campus in campusList %}
                         <option value="{{ campus.name }}">{{ campus.name }}</option>
                     {% endfor %}
@@ -72,8 +72,8 @@
                      {# quand l'utilisateur sera connecté je serais si il est insrit #}
                      {#            {% if nightOut in app.user.nightsOut %} #}
                      {#                <li>est incrit : ok</li> #}
-                    {{ form_start(formParticiper) }}
-                    {{ form_end(formParticiper) }}
+
+
                 </div>
 
                 {% endfor %}
