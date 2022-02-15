@@ -31,9 +31,6 @@ class NightOut
     #[ORM\Column(type: 'datetime')]
     private $startingTime;
 
-    //TODO : supprimer la duration, en faire une colonne ending_time, en datetime
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private $duration;
 
     #[Assert\DateTime]
     #[Assert\NotNull]
@@ -76,6 +73,9 @@ class NightOut
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'nightOuts')]
     #[ORM\JoinColumn(nullable: false)]
     private $category;
+
+    #[ORM\Column(type: 'datetime')]
+    private $endingTime;
 
 
 
@@ -147,18 +147,6 @@ class NightOut
     public function setNbInscriptionMax(?int $nbInscriptionMax): self
     {
         $this->nbInscriptionMax = $nbInscriptionMax;
-
-        return $this;
-    }
-
-    public function getIsArchived(): ?bool
-    {
-        return $this->is_archived;
-    }
-
-    public function setIsArchived(bool $is_archived): self
-    {
-        $this->is_archived = $is_archived;
 
         return $this;
     }
@@ -262,6 +250,18 @@ class NightOut
     public function __toString()
     {
         return $this->category . $this->campus . $this->places ;
+    }
+
+    public function getEndingTime(): ?\DateTimeInterface
+    {
+        return $this->endingTime;
+    }
+
+    public function setEndingTime(\DateTimeInterface $endingTime): self
+    {
+        $this->endingTime = $endingTime;
+
+        return $this;
     }
 
 }
