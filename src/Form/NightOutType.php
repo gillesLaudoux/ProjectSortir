@@ -19,7 +19,8 @@ class NightOutType extends AbstractType
     {
         $builder
             ->add('name', null, ['label'=>"nom de l'évènement : "])
-            ->add('startingTime', null, ['label'=>"début de l'événement : "])
+            ->add('startingTime', null, ['label'=>"début de l'événement : ",
+                'date_widget'=>'single_text'])
             ->add('endingTime', null, ['label'=>"fin de l'évènement : "])
             ->add('dueDateInscription', null, ['label'=>"date de fin d'inscription : "])
             ->add('nbInscriptionMax', null, ['label'=>"nombre de places : "])
