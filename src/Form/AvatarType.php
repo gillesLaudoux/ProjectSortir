@@ -17,7 +17,7 @@ class AvatarType extends AbstractType
             ->add('AvatarFileName')
             ->add('AvatarFileType')
             ->add('Avatar', FileType::class, [
-                'label' => 'Votre photo',
+                'label' => false,
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,

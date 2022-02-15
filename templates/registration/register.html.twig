@@ -11,11 +11,8 @@
 
     <div class="divregister">
         <h1>Register</h1>
-        <div class="sousdivregister">
-            <p>{{ form_start(registrationForm) }}
 
-            </p>
-        </div>
+            {{ form_start(registrationForm) }}
         {#        pseudo #}
         <div class="sousdivregister">
             {{ form_row(registrationForm.username,{
@@ -64,10 +61,20 @@
                 },
             }) }}
         </div>
+
+        <div class="sousdivregister">
+            <div class="photo">
+                <p>Ajouter votre photo </p>
+                <a href="{{ path('avatar_register') }}"><img class="iconupload" src="{{ asset('images/icons8-upload-64.png') }}" alt="#"></a>
+            </div>
+        </div>
+
         {#            confidentialité #}
         <div class="sousdivregister">
             {{ form_row(registrationForm.agreeTerms) }}
         </div>
+
+
 
         <div class="sousdivregister">
             <div class="bouton">

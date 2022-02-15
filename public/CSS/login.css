@@ -93,6 +93,20 @@
     position: relative;
     cursor: pointer;
     padding-bottom: 10px;
+}
+
+.rememberme{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5%;
+}
+label{
+    font-size: 0.9em;
+
+}
+label input{
+
 
 }
 
@@ -130,15 +144,19 @@
 
     .loginform .divlogin h1 {
         font-size: 2em;
-        margin-right: 20%;
+
     }
 
     label {
-        display: flex;
+
         margin-right: 10%;
-        font-size: 2em;
-        color: white;
+        color: #114273;
+
     }
+
+   .rememberme{
+       vertical-align: baseline;
+   }
 
 
     footer {

@@ -13,6 +13,8 @@
 
         <h1>Mon Profil </h1>
 
+        <img id="photoprofil" src="{{ asset("uploads/avatar/" ~ user.avatar.AvatarFileName) }}" alt="Ma photo">
+
         <div class="infos">
 
             <div class="info">
@@ -49,7 +51,7 @@
         {% endif %}
 
     </div>
-    <img src="{{ asset("uploads/avatar/" ~ user.avatar.AvatarFileName) }}" alt="Ma photo">
+
 
 
 {% endblock %}

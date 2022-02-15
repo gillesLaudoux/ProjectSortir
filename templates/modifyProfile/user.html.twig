@@ -40,16 +40,14 @@
         </div>
 
 
-
-
-    <button type="submit" class="btn">Enregistrer</button>
-    {{ form_end(form) }}
+        <button type="submit" class="btn">Enregistrer</button>
+        {{ form_end(form) }}
 
 
 
-    {% for success in app.flashes('success') %}
-        {{ success }}
-    {% endfor %}
+        {% for success in app.flashes('success') %}
+            {{ success }}
+        {% endfor %}
     </div>
 
 {% endblock %}

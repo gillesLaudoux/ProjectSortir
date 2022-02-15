@@ -1,31 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}create your night out!{% endblock %}
+{% block title %}{{ parent() }}Creer une sortie{% endblock %}
+
+{% block CSS %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/register.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Création d'une sortie</h1>
+    <div class="divcreate">
+        <h1>Création d'une sortie</h1>
+        <div class="sousdivcreate">
+            {{ form_start(formNight) }}
+            <div class="rowcreate">
+                {{ form_row(formNight.name) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.startingTime) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.dueDateInscription) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.nbInscriptionMax) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.endingTime) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.campus) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.places) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.category) }}
+            </div>
+            <div class="rowcreate">
+                {{ form_row(formNight.description) }}
+            </div>
 
-    {{ form_start(formNight) }}
-    {{ form_row(formNight.name) }}
-    {{ form_row(formNight.startingTime) }}
-    {{ form_row(formNight.dueDateInscription) }}
-    {{ form_row(formNight.nbInscriptionMax) }}
-    {{ form_row(formNight.endingTime) }}
-    {{ form_row(formNight.campus) }}
-    {{ form_row(formNight.places) }}
-    {{ form_row(formNight.category) }}
-    {{ form_row(formNight.description) }}
+            <input type="reset" value="Annuler">
+            {{ form_end(formNight) }}
 
-    <input type="reset" value="Annuler">
-    {{ form_end(formNight) }}
+            {% for success in app.flashes('success') %}
+                {{ success }}
+            {% endfor %}
 
-    {% for success in app.flashes('success') %}
-        {{ success }}
-    {% endfor %}
-
-    {% for fail in app.flashes('fail') %}
-        {{ fail }}
-    {% endfor %}
-
+            {% for fail in app.flashes('fail') %}
+                {{ fail }}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
