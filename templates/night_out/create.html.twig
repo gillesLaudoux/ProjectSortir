@@ -4,7 +4,7 @@
 
 {% block CSS %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('CSS/nightoutCreate.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/create.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -40,7 +40,7 @@
                 {{ form_row(formNight.description) }}
             </div>
 
-            <input class="annulerbutton" type="reset" value="Annuler">
+            <input type="reset" value="Annuler">
             {{ form_end(formNight) }}
 
             {% for success in app.flashes('success') %}
