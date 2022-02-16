@@ -86,14 +86,14 @@ class NightOutController extends AbstractController
 
         }
 
-        $formParticiper = $this->createForm(ParticiperNightOutType::class);
-        $formParticiper->handleRequest($request);
+//        $formParticiper = $this->createForm(ParticiperNightOutType::class);
+//        $formParticiper->handleRequest($request);
 
         // Requête permettant de sélectionner tous les articles (avec des inner joins) si le formulaire de filtre
         // n'est pas utilisé
 
-        return $this->renderForm('main/index.html.twig',
-            compact("nightOutList", "campusList","formParticiper")
+        return $this->render('main/index.html.twig',
+            compact("nightOutList", "campusList")
         );
     }
 
@@ -234,6 +234,20 @@ class NightOutController extends AbstractController
 
     }
 
+
+    /**  Ajout d'un participant à un évenement */
+    #[Route('/addremove/{id}', name: '_ajouterparticipant')]
+    public function ajouterParticipant( $id,
+                                         NightOutRepository $nightOutRepository,
+                                         UserRepository $userRepository,
+                                         EntityManagerInterface $entityManager,
+                                         AddRemoveNightOut $addRemoveNightOut
+
+    ):Response
+    {
+        $addRemoveNightOut->exec($id);
+        return $this->render('main/index.html.twig');
+    }
 
 //    #[Route('/nightout', name: 'night_out')]
 //    public function selectAll(

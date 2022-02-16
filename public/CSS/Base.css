@@ -30,7 +30,7 @@ body {
 
 #navbarBasicExample .navbar-end .navbar-item:hover {
     font-size: 1.2em;
-    color: white;
+    color: #bf8a3d;
 }
 
 #navbarBasicExample .navbar-end p{
@@ -43,8 +43,6 @@ body {
     font-size: 1.4em;
     padding-top: 2%;
     margin-right: 70%;
-
-
 
 }
 .navbar-burger{
@@ -65,41 +63,38 @@ footer {
 footer p {
     text-align: center;
     color: white;
-
+    padding-top: 1%;
 }
 
 /* ----RESPONSIVE---- */
-/*RESPONSIVE*/
-@media screen and (max-width: 640px) {
-    .navbar {
-        background-color: #134A80;
-    }
 
-    .navbar-item h1 {
-        font-size: 1.5em;
-    }
-
-    .navbar-menu {
-        background-color: #134A80;
-    }
+.navbar{
+    background-color:#134A80;
+}
+.navbar-item h1 {
+    font-size: 1.5em;
+}
+.navbar-menu{
+    background-color: #134A80;
+}
 
 
-    #navbarBasicExample .navbar-end .navbar-itemhey {
-        color: white;
-        font-size: 1.3em;
-        margin-left: 3.5%;
 
-    }
+#navbarBasicExample .navbar-end .navbar-itemhey{
+    color:white;
+    font-size: 1.3em;
+    margin-left: 3.5%;
 
-    div input {
-        border: none;
-        border-radius: 7px;
-        height: 38px;
-    }
+}
 
-    footer p {
-        /*padding-top: 4%;*/
-    }
+div input{
+    border: none;
+    border-radius: 7px;
+    height: 38px;
+}
+
+footer p{
+    padding-top: 4%;
 }
 
 
