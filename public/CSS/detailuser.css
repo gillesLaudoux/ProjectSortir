@@ -37,8 +37,8 @@
 }
 
 .infos{
-padding-top: 5%;
-    padding-bottom: 8%;
+    padding-top: 5%;
+    padding-bottom: 4%;
 
 }
 button{
@@ -54,7 +54,7 @@ button{
     box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
     position: relative;
     cursor: pointer;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
 }
 
 button:hover {

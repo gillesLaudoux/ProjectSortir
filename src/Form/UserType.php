@@ -29,13 +29,13 @@ class UserType extends AbstractType
             //->add('nightsOut')
             ->add('campus',EntityType::class,
                 ['class'=>Campus::class,
-                    "label" => false])
-            ->add('avatar',
-                EntityType::class,
-                [
-                    'class'=>Avatar::class,
-                    //'image_uri' =>true,
-                ]);
+                    "label" => false]);
+//            ->add('avatar',
+//                EntityType::class,
+//                [
+//                    'class'=>Avatar::class,
+//                    //'image_uri' =>true,
+//                ]);
 
     }
 

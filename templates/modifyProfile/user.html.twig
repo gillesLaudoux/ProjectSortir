@@ -12,39 +12,43 @@
     <div class="modifprofil">
     <h1>Modifier mon profil</h1>
     <div class="infos">
-        <div class="info">
-            {{ form_start(form) }}
-        </div>
+    <div class="info">
+        {{ form_start(form) }}
+    </div>
 
-        <div class="info">
-            {{ form_row(form.username) }}
-        </div>
+    <div class="info">
+        {{ form_row(form.username) }}
+    </div>
 
-        <div class="info">
-            {{ form_row(form.firstName) }}
-        </div>
+    <div class="info">
+        {{ form_row(form.firstName) }}
+    </div>
 
-        <div class="info">
-            {{ form_row(form.lastName) }}
-        </div>
+    <div class="info">
+        {{ form_row(form.lastName) }}
+    </div>
 
-        <div class="info">
-            {{ form_row(form.phoneNumber) }}
-        </div>
+    <div class="info">
+        {{ form_row(form.phoneNumber) }}
+    </div>
 
-        <div class="info">
-            {{ form_row(form.email) }}
-        </div>
-        <div class="info">
-            {{ form_row(form.campus) }}
-        </div>
+    <div class="info">
+        {{ form_row(form.email) }}
+    </div>
+    <div class="info">
+        {{ form_row(form.campus) }}
+    </div>
+    <div class="label+icon">
+        <p>Ajouter votre photo</p>
+        <a href="{{ path('avatar_register') }}"><img src="{{ asset('images/icons8-upload-64.png') }}" alt=""></a>
+    </div>
 
 
-        <button type="submit" class="btn">Enregistrer</button>
-        {{ form_end(form) }}
+    <button type="submit" class="btn">Enregistrer</button>
+    {{ form_end(form) }}
 
 
-
+    <div class="msgflash">
         {% for success in app.flashes('success') %}
             {{ success }}
         {% endfor %}
