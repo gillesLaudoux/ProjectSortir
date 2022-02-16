@@ -30,7 +30,7 @@ class UserType extends AbstractType
             ->add('campus',EntityType::class,
                 ['class'=>Campus::class,
                     "label" => false])
-            ->add('image',
+            ->add('avatar',
                 EntityType::class,
                 [
                     'class'=>Avatar::class,
