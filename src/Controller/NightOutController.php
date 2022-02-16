@@ -41,41 +41,18 @@ class NightOutController extends AbstractController
             /** On ne chercher pas à faire une nouvelle insertion d'une NightOut, ici on s'en sert pour récupérer des
              * champs, dans le but de filtrer ce qu'on affiche
              */
-            $isOrganizer = $request->query->get('is_organizer');
-            $isParticipant = $request->query->get('is_participant');
-            $notParticipant = $request->query->get('not_participant');
+            $idOrganizer = $request->query->get('is_organizer');
+            $idParticipant = $request->query->get('is_participant');
+            $idNotParticipant = $request->query->get('not_participant');
             $campus = $request->query->get("filter_night_out_campus");
             $nightOutName = $request->query->get("filter_night_out_name");
             $startDate = $request->query->get("filter_night_out_startTime");
             $endDate = $request->query->get("filter_night_out_endTime");
-            if (is_null($campus) && is_null($isOrganizer) && is_null($isParticipant) && is_null($notParticipant) &&
+
+            if (is_null($campus) && is_null($idOrganizer) && is_null($idParticipant) && is_null($idNotParticipant) &&
                 is_null($nightOutName)) {
                 $nightOutList = $nightOutRepository->selectAll();
             } else {
-                // Si les champs de Date ne sont pas remplies, on les initialise à des dates qui ne perturbent pas notre
-                // filtre
-                if (empty($startDate)) {
-                    $startDate = new \DateTime();
-                }
-                if (empty($endDate)) {
-                    $endDate = new \DateTime("2023-01-01");
-                }
-                if (!is_null($isOrganizer)) { // si on veut les sorties dont l'user est l'organisateur, on va chercher son id
-                    // pour l'utiliser avec le Repo
-                    $idOrganizer = $this->getUser()->getId();
-                } else {
-                    $idOrganizer = null;
-                }
-                if (!is_null($isParticipant)) {
-                    $idParticipant = $this->getUser()->getId();
-                } else {
-                    $idParticipant = null;
-                }
-                if (!is_null($notParticipant)) {
-                    $idNotParticipant = $this->getUser()->getId();
-                } else {
-                    $idNotParticipant = null;
-                }
 
                 //TODO supprimer les dump à la prod
                 // On fait un like sur le nom, en ajoutant les % on fait un un LIKE %name%
@@ -236,6 +213,19 @@ class NightOutController extends AbstractController
         $nightOut = $nightOutRepository->find($id);
         return $this->render('night_out/detail.html.twig',compact('nightOut'));
 
+    }
+
+    /**  Ajout d'un participant à un évenement */
+    #[Route('/addremove/{id}', name: '_ajouterparticipant')]
+    public function ajouterParticipant( $id,
+                                        NightOutRepository $nightOutRepository,
+                                        UserRepository $userRepository,
+                                        EntityManagerInterface $entityManager,
+                                        AddRemoveNightOut $addRemoveNightOut
+    ):Response
+    {
+        $addRemoveNightOut->exec($id);
+        return $this->render('main/index.html.twig');
     }
 
 

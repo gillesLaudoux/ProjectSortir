@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\NightOut;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -30,7 +31,7 @@ class NightOutRepository extends ServiceEntityRepository
             ->innerJoin("n.places", "pl")
             ->innerJoin("n.campus", "cam")
             ->innerJoin("n.participants", "p")
-            ->innerJoin("n.organizer", "or")
+            ->innerJoin("n.organizer", "org")
             ->innerJoin("pl.city", "ci");
 
         return $qb->getQuery()->getResult();
@@ -41,20 +42,33 @@ class NightOutRepository extends ServiceEntityRepository
                                  $idNotParticipant)
     {
         $qb = $this->createQueryBuilder("n");
-        $qb->innerJoin("n.state", "s")
-            ->innerJoin("n.category", "cat")
-            ->innerJoin("n.places", "pl")
-            ->innerJoin("n.campus", "cam")
-            ->innerJoin("n.participants", "p")
-            ->innerJoin("n.organizer", "org")
-            ->innerJoin("pl.city", "ci")
-            ->where("s.id = '2'")// affiche que les night_out ouvertes
-            ->andWhere('n.name LIKE :nightOutName')
-            ->andWhere('n.startingTime > :startingTime')
-            ->andWhere('n.dueDateInscription < :endTime')
-            ->setParameter("nightOutName", $nightOutName)
-            ->setParameter("startingTime", $startDate)
-            ->setParameter("endTime", $endDate);
+
+        $qb->leftJoin("n.state", "s")
+            ->leftJoin("n.category", "cat")
+            ->leftJoin("n.places", "pl")
+            ->leftJoin("n.campus", "cam")
+            ->leftJoin("n.participants", "p")
+            ->leftJoin("n.organizer", "org")
+            ->leftJoin("pl.city", "ci")
+            ->where("n.state = 2");// affiche que les night_out ouvertes
+
+        if(!is_null($nightOutName)){
+            $qb->andWhere('n.name LIKE :nightOutName')
+                ->setParameter("nightOutName", "%".$nightOutName."%");
+        }
+
+        dump($startDate);
+        dump($endDate);
+
+        if(!empty($startDate)){
+            $qb->andWhere('n.startingTime > :startingTime')
+                ->setParameter("startingTime", $startDate);
+        }
+
+        if(!empty($endDate)){
+            $qb->andWhere('n.dueDateInscription < :endTime')
+                ->setParameter("endTime", $endDate);
+        }
 
         if(!is_null($campusName)){
             $qb->andWhere('cam.name = :name')
@@ -63,22 +77,23 @@ class NightOutRepository extends ServiceEntityRepository
 
         /* Si l'id d'un organizer est donné, on sélectionne que les NightOut qu'il organise */
         if(!is_null($idOrganizer)){
-            dump("Repos add option idOrganizer");
-            $qb->andWhere("org.id = :idOrganizer ")
-                ->setParameter("idOrganizer", $idOrganizer);
+            $user = $this->getEntityManager()->getRepository(User::class)->find($idOrganizer);
+            $qb->andWhere("org.id = :organizer")
+                ->setParameter("organizer", $user);
         }
         /* Si l'id de l'user est donné, on sélectionne que les NightOut auxquelles il participe */
         if(!is_null($idParticipant)){
-            dump("Repos add option idParticipant");
-            $qb->andWhere("p.id = :idParticipant")
-                ->setParameter("idParticipant", $idParticipant);
+            $user = $this->getEntityManager()->getRepository(User::class)->find($idParticipant);
+            $qb->andWhere(":participant MEMBER OF n.participants")
+                ->setParameter("participant", $user);
         }
         /* Dans ce cas on sélectionne toutes les NightOus auxquelles l'user ne participe pas */
         if(!is_null($idNotParticipant)){
-            dump("Repos add option idNotParticipant");
-            $qb->andWhere("p.id != :idNotParticipant")
-                ->setParameter("idNotParticipant", $idNotParticipant );
+            $user = $this->getEntityManager()->getRepository(User::class)->find($idNotParticipant);
+            $qb->andWhere(":participant NOT MEMBER OF n.participants")
+                ->setParameter("participant", $user );
         }
+
         $result = $qb->getQuery();
         return $result->getResult();
     }

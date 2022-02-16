@@ -49,6 +49,7 @@ class UserController extends AbstractController
     }
 
 
+
     /** Gestion du profil */
     #[IsGranted("ROLE_USER")]
     #[Route('/user/{username}', name: 'modify')]

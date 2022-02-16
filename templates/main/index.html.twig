@@ -28,11 +28,11 @@
                 <form action="">
                     <div class="barderecherche">  <input type="text" id="filter_night_out_name" name="filter_night_out_name"></div><br>
                     <div class="filtre1"><label for="is_organizer">Dont vous êtes l'organisateur</label>
-                        <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer"></div><br>
+                        <input type="checkbox" value="{{ app.user.id }}" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer"></div><br>
                     <div class="filtre2"><label for="is_participant">Auxquels vous participez</label>
-                        <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox"></div><br>
+                        <input type="checkbox" value="{{ app.user.id }}" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox"></div><br>
                     <div class="filtre3"><label for="not_participant">Auxquels vous ne participez pas</label>
-                        <input type="checkbox" name="not_participant" id="not_participant"
+                        <input type="checkbox" value="{{ app.user.id }}" name="not_participant" id="not_participant"
                                class="night_out_filter form_filter checkbox"></div><br>
                     <div class="campus"><label for="filter_night_out_campus">Campus :</label>
                         <select name="filter_night_out_campus" id="filter_night_out_campus">
