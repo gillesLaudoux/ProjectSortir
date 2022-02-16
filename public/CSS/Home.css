@@ -45,31 +45,37 @@
     .barderecherche {
         margin-left: 2.2vw;
         padding-bottom: 20px;
+
     }
     .titre {
         font-size: 30px;
         text-align: center;
     }
     .card {
-        width: 300px;
-        margin : 0 0 6vh 0.4vw;
+        width: 350px;
+        padding : 0 0 6vh 1vw;
         top: 0;
-        max-height: 12.5vh;
+        max-height: 22vh;
         overflow: hidden;
+        border-radius: 20px;
+        background-color: #c8eaff;
+        -webkit-box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
+        box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
     }
     .card:hover {
-        max-height: 100vh;
+        max-height: 80vh;
         transition-duration: 1.5s ;
     }
-    .cardContent {
-        margin : 1vh 0 0 1vw;
+
+    .titrecard {
+        font-size: 20px;
     }
     .couleur {
         width: 700px;
         height: 94vh;
         /*background-color: #adadad;*/
-        background-color: rgba(135,206,250,0.1);
-        box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
+        background-color: rgba(44, 59, 68, 0.1);
+        box-shadow: 0 6px 20px -5px rgba(41, 45, 47, 0.15);
         position: absolute;
     }
     .envResultats  {
@@ -86,6 +92,11 @@
     }
     .checkbox {
         height: 12px;
+    }
+
+    .icons {
+        margin-top: 3vh;
+        margin-left: 2.5vw;
     }
 }
 /* MOBILE */

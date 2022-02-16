@@ -47,20 +47,30 @@
                     <input type="datetime-local" id="filter_night_out_endTime" name="filter_night_out_endTime">
                     <div class="envoyer"><input type="submit" value="Envoyer"></div>
                 </form>
+                <br>
+                <a href="{{ path('night_out_create') }}" style=" font-size: 22px">Organise ta propre sortie !</a>
+
+
             </div></div>
         <div class="resultats">{#  -------AFFICHER LA SORTIE------- #} <div class="envResultats">
                 <ul>
                     {% for nightOut in nightOutList %}
                         <div class="card" style="margin-top: 1vh">
+                            <div class="titrecard">
                             {{ nightOut.name }} par <a href="../user/detail/{{ nightOut.organizer.id }}">{{ nightOut.organizer.username }}</a><br>
+                            </div>
+
                             campus {{ nightOut.campus.name }}<br>
-                            le : {{ nightOut.startingTime | date }}<br>
+                            <br>
+                            {{ nightOut.description }}<br><br>
+                            le : {{ nightOut.startingTime | date('d/m/Y à H:i') }}<br>
                             fin des inscriptions le {{ nightOut.dueDateInscription | date('d/m/Y à H:i') }}<br>
                             Nombre de places : {{ nightOut.nbInscriptionMax }}<br>
                             {#                     {{ nightOut.state.libelle }}<br>#}
                             {# quand l'utilisateur sera connecté je serais si il est insrit #}
                             {#            {% if nightOut in app.user.nightsOut %} #}
                             {#                <li>est incrit : ok</li> #}
+                            <div class="icons">
                             <a href="{{ path('night_out_filter', {'id': nightOut.id,'idNightOut': nightOut.id}) }}">
                                 {% if app.user not in nightOut.participants  %} {# Si l'utilisateur ne participe pas à l'activité : afficher le bouton participer #}
                                     <img src="{{ asset('images/participer.png') }}" alt="" class="participerImg">
@@ -70,7 +80,10 @@
                                 {% endif %}
                             </a>
                             <a href="{{ path('night_out_detail', {'id': nightOut.id}) }}"><img src="{{ asset('images/detail.png') }}" alt="" class="participerImg"></a>
+
+                            </div>
                         </div>
+                        <br>
                     {% endfor %}
                 </ul>
             </div>
