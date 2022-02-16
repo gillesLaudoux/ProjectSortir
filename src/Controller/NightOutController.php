@@ -235,6 +235,19 @@ class NightOutController extends AbstractController
     }
 
 
+    /**  Ajout d'un participant à un évenement */
+    #[Route('/addremove/{id}', name: '_ajouterparticipant')]
+    public function ajouterParticipant( $id,
+                                         NightOutRepository $nightOutRepository,
+                                         UserRepository $userRepository,
+                                         EntityManagerInterface $entityManager,
+                                         AddRemoveNightOut $addRemoveNightOut
+
+    ):Response
+    {
+        $addRemoveNightOut->exec($id);
+        return $this->render('main/index.html.twig');
+    }
 
 //    #[Route('/nightout', name: 'night_out')]
 //    public function selectAll(
