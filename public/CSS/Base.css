@@ -15,6 +15,11 @@ body {
 .navbar-item h1 {
     font-size: 2em;
     color : white;
+    padding-left: 20px;
+}
+.logoblanc{
+    width: 40px;
+    height: 30px;
 }
 
 .navbar p{
