@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Avatar;
 use App\Entity\Campus;
 use App\Entity\File;
 use App\Entity\User;
@@ -32,7 +33,7 @@ class UserType extends AbstractType
             ->add('image',
                 EntityType::class,
                 [
-                    'class'=>File::class,
+                    'class'=>Avatar::class,
                     //'image_uri' =>true,
                 ]);
 
