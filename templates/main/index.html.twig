@@ -2,11 +2,13 @@
 
 {% block title %}{{ parent() }}Register{% endblock %}
 
-{% block CSS %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('CSS/register.css') }}">
-{% endblock %}
+
 {% block body %}
+
+    {% block CSS %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('CSS/Home.css') }}">
+    {% endblock %}
 
 <div class="couleur"></div>
 
@@ -57,7 +59,7 @@
                 </select></div><br>
                 <label for="filter_night_out_startTime">du  </label>
                 <input type="datetime-local" id="filter_night_out_startTime" name="filter_night_out_startTime">
-                <label for="filter_night_out_startTime"><br>au </label>
+                <label for="filter_night_out_startTime"><br><br>au </label>
                 <input type="datetime-local" id="filter_night_out_endTime" name="filter_night_out_endTime">
                 <div class="envoyer"><input type="submit" value="Envoyer"></div>
             </form>
@@ -78,8 +80,9 @@
                      {# quand l'utilisateur sera connecté je serais si il est insrit #}
                      {#            {% if nightOut in app.user.nightsOut %} #}
                      {#                <li>est incrit : ok</li> #}
-{#                    {{ form_start(formParticiper) }}#}
-{#                    {{ form_end(formParticiper) }}#}
+                    <a href="{{ path('night_out_filter', {'id': nightOut.id}) }}">Participer</a>
+                    <a href="{{ path('night_out_detail', {'id': nightOut.id}) }}">Détail</a>
+
                 </div>
 
                 {% endfor %}
