@@ -1,99 +1,79 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}{{ parent() }}Home{% endblock %}
-
+{% block title %}{{ parent() }}Register{% endblock %}
 {% block CSS %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('CSS/Home.css') }}">
 {% endblock %}
 {% block body %}
-
-<div class="couleur"></div>
-
+    <div class="couleur"></div>
     <div class="container">
-
         <div class="filtres"> <div class="envFiltres"> <div class="titre"><h1>Filtrer les sorties :</h1></div>
-
-            {#    <label for="campus-select">Choisir un campus:</label> #}
-            {#    <select name="filtre" id="#"> #}
-            {#        #}{#        <option value="{{ app.user.campus.name }}">Campus par defaut : {{ app.user.campus.name }}</option> #}
-            {#        {% for nightOut in nightOutList %} #}
-            {#            <option value="{{ nightOut.campus.name }}">{{ nightOut.campus.name }}</option> #}
-            {#        {% endfor %} #}
-            {#    </select> #}
-            {#  -------AFFICHER LE FORMULAIRE (SAISIE DES FILTRES)------- #}{#
-            {{ form_start(filterForm) }}
-                <label for="is_organizer">Dont vous êtes l'organisateur</label>
-                <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer">
-                <label for="is_participant">Auxquels vous participez</label>
-                <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox">
-                <label for="not_participant">Auxquels vous ne participez pas</label>
-                <input type="checkbox" name="not_participant" id="not_participant" class="night_out_filter form_filter checkbox">
-                <button>Envoyer</button>
-            {{ form_end(filterForm) }} #}
-
-
-
-            <form action="">
-              <div class="barderecherche">  <input type="text" id="filter_night_out_name" name="filter_night_out_name"></div><br>
-
-                <div class="filtre1"><label for="is_organizer">Dont vous êtes l'organisateur</label>
-               <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer"></div><br>
-
-                <div class="filtre2"><label for="is_participant">Auxquels vous participez</label>
-                <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox"></div><br>
-
-
-                <div class="filtre3"><label for="not_participant">Auxquels vous ne participez pas</label>
-                <input type="checkbox" name="not_participant" id="not_participant"
-                       class="night_out_filter form_filter checkbox"></div><br>
-
-                <div class="campus"><label for="filter_night_out_campus">Campus :</label>
-                <select name="filter_night_out_campus" id="filter_night_out_campus">
-                    <option value="" selected disabled hidden>Sélectionner un campus</option>
-                    {% for campus in campusList %}
-                        <option value="{{ campus.name }}">{{ campus.name }}</option>
-                    {% endfor %}
-                </select></div><br>
-                <label for="filter_night_out_startTime">du  </label>
-                <input type="datetime-local" id="filter_night_out_startTime" name="filter_night_out_startTime">
-                <label for="filter_night_out_startTime"><br>au </label>
-                <input type="datetime-local" id="filter_night_out_endTime" name="filter_night_out_endTime">
-                <div class="envoyer"><input type="submit" value="Envoyer"></div>
-            </form>
-        </div></div>
+                {#    <label for="campus-select">Choisir un campus:</label> #}
+                {#    <select name="filtre" id="#"> #}
+                {#        #}{#        <option value="{{ app.user.campus.name }}">Campus par defaut : {{ app.user.campus.name }}</option> #}
+                {#        {% for nightOut in nightOutList %} #}
+                {#            <option value="{{ nightOut.campus.name }}">{{ nightOut.campus.name }}</option> #}
+                {#        {% endfor %} #}
+                {#    </select> #}
+                {#  -------AFFICHER LE FORMULAIRE (SAISIE DES FILTRES)------- #}{#
+                {{ form_start(filterForm) }}
+                    <label for="is_organizer">Dont vous êtes l'organisateur</label>
+                    <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer">
+                    <label for="is_participant">Auxquels vous participez</label>
+                    <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox">
+                    <label for="not_participant">Auxquels vous ne participez pas</label>
+                    <input type="checkbox" name="not_participant" id="not_participant" class="night_out_filter form_filter checkbox">
+                    <button>Envoyer</button>
+                {{ form_end(filterForm) }} #}
+                <form action="">
+                    <div class="barderecherche">  <input type="text" id="filter_night_out_name" name="filter_night_out_name"></div><br>
+                    <div class="filtre1"><label for="is_organizer">Dont vous êtes l'organisateur</label>
+                        <input type="checkbox" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer"></div><br>
+                    <div class="filtre2"><label for="is_participant">Auxquels vous participez</label>
+                        <input type="checkbox" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox"></div><br>
+                    <div class="filtre3"><label for="not_participant">Auxquels vous ne participez pas</label>
+                        <input type="checkbox" name="not_participant" id="not_participant"
+                               class="night_out_filter form_filter checkbox"></div><br>
+                    <div class="campus"><label for="filter_night_out_campus">Campus :</label>
+                        <select name="filter_night_out_campus" id="filter_night_out_campus">
+                            <option value="" selected disabled hidden>Sélectionner un campus</option>
+                            {% for campus in campusList %}
+                                <option value="{{ campus.name }}">{{ campus.name }}</option>
+                            {% endfor %}
+                        </select></div><br>
+                    <label for="filter_night_out_startTime">du  </label>
+                    <input type="datetime-local" id="filter_night_out_startTime" name="filter_night_out_startTime">
+                    <label for="filter_night_out_startTime"><br>au </label>
+                    <input type="datetime-local" id="filter_night_out_endTime" name="filter_night_out_endTime">
+                    <div class="envoyer"><input type="submit" value="Envoyer"></div>
+                </form>
+            </div></div>
         <div class="resultats">{#  -------AFFICHER LA SORTIE------- #} <div class="envResultats">
-            <ul>
-                {% for nightOut in nightOutList %}
-
-                <div class="card" style="margin-top: 1vh">
-
-                     {{ nightOut.name }} par <a href="../user/detail/{{ nightOut.organizer.id }}">{{ nightOut.organizer.username }}</a><br>
-                     campus {{ nightOut.campus.name }}<br>
-                     le : {{ nightOut.startingTime | date }}<br>
-                     fin des inscriptions le {{ nightOut.dueDateInscription | date('d/m/Y à H:i') }}<br>
-                     Nombre de places : {{ nightOut.nbInscriptionMax }}<br>
-{#                     {{ nightOut.state.libelle }}<br>#}
-
-                     {# quand l'utilisateur sera connecté je serais si il est insrit #}
-                     {#            {% if nightOut in app.user.nightsOut %} #}
-                     {#                <li>est incrit : ok</li> #}
-                    <a href="{{ path('night_out_filter', {'id': nightOut.id}) }}">Participer</a>
-                    <a href="{{ path('night_out_detail', {'id': nightOut.id}) }}">Détail</a>
-
-                </div>
-
-                {% endfor %}
-
-
-            </ul>
-
+                <ul>
+                    {% for nightOut in nightOutList %}
+                        <div class="card" style="margin-top: 1vh">
+                            {{ nightOut.name }} par <a href="../user/detail/{{ nightOut.organizer.id }}">{{ nightOut.organizer.username }}</a><br>
+                            campus {{ nightOut.campus.name }}<br>
+                            le : {{ nightOut.startingTime | date }}<br>
+                            fin des inscriptions le {{ nightOut.dueDateInscription | date('d/m/Y à H:i') }}<br>
+                            Nombre de places : {{ nightOut.nbInscriptionMax }}<br>
+                            {#                     {{ nightOut.state.libelle }}<br>#}
+                            {# quand l'utilisateur sera connecté je serais si il est insrit #}
+                            {#            {% if nightOut in app.user.nightsOut %} #}
+                            {#                <li>est incrit : ok</li> #}
+                            <a href="{{ path('night_out_filter', {'id': nightOut.id,'idNightOut': nightOut.id}) }}">
+                                {% if app.user not in nightOut.participants  %} {# Si l'utilisateur ne participe pas à l'activité : afficher le bouton participer #}
+                                    <img src="{{ asset('images/participer.png') }}" alt="" class="participerImg">
+                                {% endif%}
+                                {% if app.user in nightOut.participants %} {# Si user participe déjà :> afficher bouton se désister #}
+                                    <img src="{{ asset('images/desister.png') }}" alt="" class="participerImg">
+                                {% endif %}
+                            </a>
+                            <a href="{{ path('night_out_detail', {'id': nightOut.id}) }}"><img src="{{ asset('images/detail.png') }}" alt="" class="participerImg"></a>
+                        </div>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
-
-
-
-
-
 {% endblock %}

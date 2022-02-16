@@ -60,7 +60,9 @@ class UserController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Profil mis à jour !');
 
-            return $this->render('modifyProfile/user.html.twig', ['form' =>$form->createView()]);
+//            return $this->render('user/detail.html.twig', ['form' =>$form->createView()]);
+            return $this->redirectToRoute('detail',
+            ['id'=>$user->getId()]);
         }
         return $this->renderForm('modifyProfile/user.html.twig',
             compact('form')

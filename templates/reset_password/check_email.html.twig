@@ -1,13 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La réinitialisation de votre mot de passe vous a été envoyé{% endblock %}
+{% block title %}{{ parent() }}Reset Password{% endblock %}
+
+{% block CSS %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/resetPassword.css') }}">
+{% endblock %}
 
 {% block body %}
-    <p>
-        Si un compte correspondant à votre email existe, alors un email contenant un lien pour réinitialiser votre mot
-        de passe vient de vous être envoyé.
-        Le lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>Si vous ne recevez pas d'email, veuillez vérifier vos spams ou <a href="{{ path('app_forgot_password_request') }}"> essayez encore</a></p>
-
+    <div class="divreset">
+        <div class="checktext">
+            <p>
+                Si un compte correspondant à votre email existe, alors un email contenant un lien pour réinitialiser
+                votre mot
+                de passe vient de vous être envoyé.
+                Le lien expirera
+                dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}
+                .
+            </p>
+        </div>
+        <div class="checktext">
+            <p>Si vous ne recevez pas d'email, veuillez vérifier vos spams ou <a
+                        href="{{ path('app_forgot_password_request') }}"> essayez encore</a></p>
+        </div>
+    </div>
 {% endblock %}
