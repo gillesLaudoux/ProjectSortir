@@ -74,8 +74,12 @@
 
 }
 
+a {
+    padding-top: 5%;
+}
+
 .loginform .divlogin .sousdivlogin .sousdivbutton {
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .loginform .divlogin .sousdivlogin .submitbt {
@@ -95,18 +99,15 @@
     padding-bottom: 10px;
 }
 
-.rememberme{
+.rememberme {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-top: 5%;
 }
-label{
+
+label {
     font-size: 0.9em;
-
-}
-label input{
-
 
 }
 
@@ -124,8 +125,6 @@ label input{
 
 /*RESPONSIVE*/
 @media screen and (max-width: 640px) {
-
-
 
 
     .loginform .divlogin {
@@ -154,9 +153,9 @@ label input{
 
     }
 
-   .rememberme{
-       vertical-align: baseline;
-   }
+    .rememberme {
+        vertical-align: baseline;
+    }
 
 
     footer {
