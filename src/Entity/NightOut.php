@@ -250,7 +250,7 @@ class NightOut
 
     public function __toString()
     {
-        return $this->category . $this->campus;// . $this->places ;
+        return $this->category . $this->campus;// . $this->organizer . $this->participants . $this->places ;
     }
 
     public function getEndingTime(): ?\DateTimeInterface

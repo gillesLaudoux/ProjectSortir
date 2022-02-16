@@ -116,7 +116,6 @@ class NightOutController extends AbstractController
         $isDateValide = $verifdate->DateDiff($nightOut->getDueDateInscription(), $nightOut->getStartingTime());
 
 
-
             if ($formNight->isSubmitted() && $formNight->isValid()) {
                // dd('abc');
                 if($isDateValide) {

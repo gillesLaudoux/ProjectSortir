@@ -6,6 +6,7 @@ use App\Entity\Campus;
 use App\Entity\NightOut;
 use App\Entity\Place;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
@@ -55,13 +56,30 @@ class AdminController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToUrl('HangOut', 'fas fa-list', 'http://localhost:8001');
-        yield MenuItem::section();
-        yield MenuItem::linkToCrud('Campus', 'fas fa-toilet', Campus::class);
-        yield MenuItem::linkToCrud('NightOut', 'fas fa-list',NightOut::class);
-        yield MenuItem::linkToCrud('Place', 'fas fa-list',Place::class);
-        yield MenuItem::linkToCrud('User', 'fas fa-list',User::class);
+
+        yield MenuItem::section('Users');
+
+        yield MenuItem::subMenu('Actions User', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Users', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Users', 'fas fa-eye', User::class)
+        ]);
+
+        yield MenuItem::subMenu('Action Campus', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Campus', 'fas fa-plus', Campus::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Campus', 'fas fa-eye', Campus::class)
+        ]);
+
+        yield MenuItem::subMenu('Action NightOut', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create NightOut', 'fas fa-plus', NightOut::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show NightOut', 'fas fa-eye', NightOut::class)
+        ]);
+
+        yield MenuItem::subMenu('Action Places', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Place', 'fas fa-plus', Place::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Place', 'fas fa-eye', Place::class)
+        ]);
+
     }
 
 }
