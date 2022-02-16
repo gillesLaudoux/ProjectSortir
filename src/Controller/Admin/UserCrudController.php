@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -12,6 +13,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use http\Client\Request;
+use http\Env\Response;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -47,13 +50,28 @@ class UserCrudController extends AbstractCrudController
 //           TextEditorField::new('description'),
         ];
     }
-//     Pour shunter les contraintes d'intégrité
-//    public function persistEntity(EntityManagerInterface $em, $entityInstance): void
+
+//    public function GrantAdministrator(
+//        EntityManagerInterface $em,
+//        UserRepository$userRepository,
+//        Request $request
+//    ): void
 //    {
-//        if(!$entityInstance instanceof User) return;
-//        //$entityInstance->setCampus(new );
 //
-//        parent::persistEntity($em, $entityInstance);
+//        //Pour activier les role selon les valeurs en BDD depuis le dashboard admin
+//        $user = $userRepository->findOneBy(['username'=>$request->request->get('username', '')]);
+//
+//        if($user->getAdministrator()===1){
+//            $user->setRoles(["ROLE_ADMIN"]);
+//        } elseif ($user->getIsActivated()===1){
+//            $user->setRoles(["ROLE_PARTICIPANT"]);
+//        } else {
+//            $user->setRoles(["ROLE_USER"]);
+//        }
+//
+//        $em->persist($user);
+//        $em->flush();
+//
 //    }
 
 }

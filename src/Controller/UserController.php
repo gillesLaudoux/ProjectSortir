@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,11 @@ class UserController extends AbstractController
 {
 
      #[Route("/login", name:"app_login")]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(
+        AuthenticationUtils $authenticationUtils,
+        UserRepository $userRepository,
+        EntityManagerInterface $em
+     ): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
@@ -31,6 +36,7 @@ class UserController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
@@ -44,6 +50,7 @@ class UserController extends AbstractController
 
 
     /** Gestion du profil */
+    #[IsGranted("ROLE_USER")]
     #[Route('/user/{username}', name: 'modify')]
     public function modifierProfil(
         EntityManagerInterface $entityManager,
@@ -72,6 +79,7 @@ class UserController extends AbstractController
     }
 
     /** Affichage d'un profil */
+    #[IsGranted("ROLE_USER")]
     #[Route('/user/detail/{id}', name:'detail') ]
     public function detail  (
     UserRepository $userRepository,
