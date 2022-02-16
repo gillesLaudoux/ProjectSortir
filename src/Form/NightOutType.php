@@ -18,14 +18,14 @@ class NightOutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', null, ['label'=>"nom de l'évènement : "])
-            ->add('startingTime', null, ['label'=>"début de l'événement : ",
+            ->add('name', null, ['label'=>"Nom de l'évenement"])
+            ->add('startingTime', null, ['label'=>"Date de l'évenement",
                 'date_widget'=>'single_text', 'time_widget'=>'single_text'])
-            ->add('endingTime', null, ['label'=>"fin de l'évènement : ",
+            ->add('endingTime', null, ['label'=>"Fin de l'évènement : ",
                 'date_widget'=>'single_text', 'time_widget'=>'single_text'])
             ->add('dueDateInscription', null, ['label'=>"date de fin d'inscription : ",
                 'date_widget'=>'single_text', 'time_widget'=>'single_text'])
-            ->add('nbInscriptionMax', null, ['label'=>"nombre de places : "])
+            ->add('nbInscriptionMax', null, ['label'=>"Nombre de places"])
             //->add('participants', null, ['label'=>"participants : "])
             //->add('organizer', null, ['label'=>''])
             //->add('state', null, ['label'=>"Etat de l'évènement"])

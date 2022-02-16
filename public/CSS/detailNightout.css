@@ -1,0 +1,31 @@
+.divdetail{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(135,206,250,0.1);
+    box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
+    /*margin-left: 35%;*/
+    /*margin-right: 35%;*/
+    /*margin-top: 8%;*/
+    margin : 6% 35% 0 35%;
+    color: black;
+}
+h1{
+    color: #134A80;
+    font-size: 2.5em;
+    margin-bottom: 4%;
+    padding-top: 7%;
+}
+
+p{
+    padding-bottom: 2%;
+    font-size: 1.2em;
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 640px) {
+    .divdetail{
+        margin :8% 6% 0 6%
+    }
+}
+
