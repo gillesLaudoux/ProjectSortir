@@ -26,7 +26,7 @@
                     <button>Envoyer</button>
                 {{ form_end(filterForm) }} #}
                 <form action="">
-                    <div class="barderecherche">  <input type="text" id="filter_night_out_name" name="filter_night_out_name"></div><br>
+                    <div class="barderecherche">  <input type="text" id="filter_night_out_name" name="filter_night_out_name" placeholder="Search"></div><br>
                     <div class="filtre1"><label for="is_organizer">Dont vous êtes l'organisateur</label>
                         <input type="checkbox" value="{{ app.user.id }}" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer"></div><br>
                     <div class="filtre2"><label for="is_participant">Auxquels vous participez</label>
@@ -60,7 +60,7 @@
                             {{ nightOut.name }} par <a href="../user/detail/{{ nightOut.organizer.id }}">{{ nightOut.organizer.username }}</a><br>
                             </div>
 
-                            campus {{ nightOut.campus.name }}<br>
+                            Campus : {{ nightOut.campus.name }}<br>
                             <br>
                             {{ nightOut.description }}<br><br>
                             le : {{ nightOut.startingTime | date('d/m/Y à H:i') }}<br>

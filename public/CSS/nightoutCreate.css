@@ -36,6 +36,22 @@ label{
     position: relative;
     cursor: pointer;
     padding-bottom: 5px;
-        margin-top: 4%;
+    margin-top: 4%;
     margin-bottom: 1%;
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 640px) {
+    .divcreate{
+        margin-left: 6%;
+        margin-right: 6%;
+
+    }
+    h1{
+        font-size: 2em;
+        margin-bottom: 2%;
+    }
+    .annulerbutton, #night_out_enregistrer, #night_out_publier{
+        margin-bottom: 0.5%;
+    }
 }
