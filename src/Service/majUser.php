@@ -34,6 +34,8 @@ class majUser
 
             if($user->getIsActivated()===0){
                 $user->setRoles([""]);
+            } else {
+                $user->setRoles(["ROLE_USER"]);
             }
 
             $this->em->persist($user);
