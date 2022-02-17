@@ -33,7 +33,7 @@ class majUser
             }
 
             if($user->getIsActivated()===0){
-                $user->setRoles([""]);
+                $user->setRoles(["ROLE_NULL"]);
             } else {
                 $user->setRoles(["ROLE_USER"]);
             }
