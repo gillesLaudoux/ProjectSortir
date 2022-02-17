@@ -8,20 +8,46 @@
 {% endblock %}
 
 {% block body %}
-<div class="divdetail">
-    <h1>Mon évènement</h1>
 
-    <p>Nom de l'évènement : {{ nightOut.name }}</p>
-    <p>Date / Heure : {{ nightOut.startingTime |date ('d-m-Y')}}</p>
-    <p>Date limite d'inscription : {{ nightOut.dueDateInscription |date ('d-m-Y')}}</p>
-    <p>Nombre de places : {{ nightOut.nbInscriptionMax }}</p>
-    {#  <p>Durée de lévénement : {{ nightOut.duration }}</p>#}
-    <p>Description : {{ nightOut.description }}</p>
-    <p>Campus : {{ nightOut.campus.name }}</p>
-    <p>Lieu : {{ nightOut.places.name }}</p>
-    <p>Rue : {{ nightOut.places.street }} </p>
-    <p>Ville : {{ nightOut.places.city.name }} </p>
-    <p>Code Postal : {{ nightOut.places.city.zipcode }} </p>
-    <p>Type d'événement : {{ nightOut.category.libelle }}</p>
-</div>
+    <div class="columns">
+    <div class="column">
+
+
+        <div class="divdetail">
+            <h1>Mon évènement</h1>
+
+            <p>Nom de l'évènement : {{ nightOut.name }}</p>
+            <p>Date / Heure : {{ nightOut.startingTime |date ('d-m-Y')}}</p>
+            <p>Date limite d'inscription : {{ nightOut.dueDateInscription |date ('d-m-Y')}}</p>
+            <p>Nombre de places : {{ nightOut.nbInscriptionMax }}</p>
+            {#  <p>Durée de lévénement : {{ nightOut.duration }}</p>#}
+            <p>Description : {{ nightOut.description }}</p>
+            <p>Campus : {{ nightOut.campus.name }}</p>
+            <p>Lieu : {{ nightOut.places.name }}</p>
+            <p>Rue : {{ nightOut.places.street }} </p>
+            <p>Ville : {{ nightOut.places.city.name }} </p>
+            <p>Code Postal : {{ nightOut.places.city.zipcode }} </p>
+            <p>Type d'événement : {{ nightOut.category.libelle }}</p>
+        </div>
+
+
+    </div>
+    <div class="column">
+
+    Liste des participants : <br>
+
+        {% for participant in participants %}
+            <img id="photoprofil" src="{{ asset("uploads/avatar/" ~ participant.avatar.AvatarFileName) }}" alt="Ma photo" style="width: 30px ; height: 30px">
+            {#        <a href="{{ path('det', {'id': nightOut.id}) }}>{{ participant.username }}</a><br>#}
+            <a href={{ path('detail', {'id': participant.id}) }}>{{ participant.username }}</a><br>
+
+        {% endfor %}
+    </div>
+
+
+    </div>
+    </div>
+    <div class="participants">
+
+
 {% endblock %}

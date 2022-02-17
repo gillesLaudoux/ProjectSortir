@@ -58,7 +58,7 @@
         max-height: 22vh;
         overflow: hidden;
         border-radius: 20px;
-        background-color: #c8eaff;
+        background-color: rgba(44, 59, 68, 0.1);
         -webkit-box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
         box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
     }

@@ -24,6 +24,58 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/nightout', name: 'night_out')]
 class NightOutController extends AbstractController
 {
+    /** Fonction qui permet d'afficher une sortie selon différents filtres */
+    #[IsGranted("ROLE_USER")]
+    #[Route('/nightoutfilter/{idNightOut}', name: '_filter', requirements: ['idNightOut' => '\d+'])]
+    public function nightOutFilterCampus(
+        NightOutRepository $nightOutRepository, CampusRepository $campusRepository,
+        Request            $request, AddRemoveNightOut $addRmv, $idNightOut = 0
+    ): Response
+    {
+        $campusList = $campusRepository->findAll();
+
+        if ($idNightOut !== 0) {
+            $addRmv->exec($idNightOut);
+            $nightOutList = $nightOutRepository->selectAll();
+        } else {
+            /** On ne chercher pas à faire une nouvelle insertion d'une NightOut, ici on s'en sert pour récupérer des
+             * champs, dans le but de filtrer ce qu'on affiche
+             */
+            $idOrganizer = $request->query->get('is_organizer');
+            $idParticipant = $request->query->get('is_participant');
+            $idNotParticipant = $request->query->get('not_participant');
+            $campus = $request->query->get("filter_night_out_campus");
+            $nightOutName = $request->query->get("filter_night_out_name");
+            $startDate = $request->query->get("filter_night_out_startTime");
+            $endDate = $request->query->get("filter_night_out_endTime");
+
+            if (is_null($campus) && is_null($idOrganizer) && is_null($idParticipant) && is_null($idNotParticipant) &&
+                is_null($nightOutName)) {
+                $nightOutList = $nightOutRepository->selectAll();
+            } else {
+
+                //TODO supprimer les dump à la prod
+                // On fait un like sur le nom, en ajoutant les % on fait un un LIKE %name%
+                // Cela permet aussi de trouver tout les NightOut ayant certains caractères
+                $nightOutName = "%" . $nightOutName . "%";
+                /**permet de faire une recherche par mots clés*/
+                $nightOutList = $nightOutRepository->selectFilter($campus, $nightOutName, $startDate, $endDate,
+                    $idOrganizer, $idParticipant, $idNotParticipant);
+            }
+
+        }
+
+//        $formParticiper = $this->createForm(ParticiperNightOutType::class);
+//        $formParticiper->handleRequest($request);
+
+        // Requête permettant de sélectionner tous les articles (avec des inner joins) si le formulaire de filtre
+        // n'est pas utilisé
+
+        return $this->render('main/index.html.twig',
+            compact("nightOutList", "campusList")
+        );
+    }
+
 
     #[IsGranted("ROLE_USER")]
     #[Route('/create', name: '_create')]
@@ -159,24 +211,11 @@ class NightOutController extends AbstractController
     ):Response
     {
         $nightOut = $nightOutRepository->find($id);
-        return $this->render('night_out/detail.html.twig',compact('nightOut'));
+        $participants = $nightOut->getParticipants();
+        return $this->render('night_out/detail.html.twig', compact('nightOut', 'participants'));
+
 
     }
-
-    /**  Ajout d'un participant à un évenement */
-    #[Route('/addremove/{id}', name: '_ajouterparticipant')]
-    public function ajouterParticipant( $id,
-                                        NightOutRepository $nightOutRepository,
-                                        UserRepository $userRepository,
-                                        EntityManagerInterface $entityManager,
-                                        AddRemoveNightOut $addRemoveNightOut
-    ):Response
-    {
-        $addRemoveNightOut->exec($id);
-        return $this->render('main/index.html.twig');
-    }
-
-
 
 //    #[Route('/nightout', name: 'night_out')]
 //    public function selectAll(
