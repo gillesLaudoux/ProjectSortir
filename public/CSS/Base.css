@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
 body {
     margin: 0;
     width: 100%;
+    font-family: 'Sen', sans-serif;
 }
 /*----NAVBAR----*/
 .navbar {
