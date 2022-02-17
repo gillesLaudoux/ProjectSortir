@@ -29,11 +29,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                     //maxMessage: "Votre pseudo ne peut pas dépasser 180 caractères")]
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     //#[Assert\Regex("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")]
+    // ou ^[a-z0-9_-]{3,15}$
     private $username;
 
     #[ORM\Column(type: 'json')]
     private $roles = ["ROLE_USER"];
 
+    #[Assert\Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$")]
     #[ORM\Column(type: 'string')]
     private $password;
 
@@ -45,16 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         min: 8, max: 50, minMessage: "Votre mail ne peut pas avoir moins de 8 caractères",
         maxMessage: "Votre mail ne peut pas faire plus de 50 caractères"
     )]
-//        #[Assert\Regex("/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|
-//        (?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|
-//        (?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:
-//        [\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|
-//        (?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z]
-//        [a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|
-//        (?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|
-//        (?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4})
-//        {0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))
-//        (?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD")]
+//        #[Assert\Regex("#\/^[a-z ,.'-]+$\/i")]
     #[ORM\Column(type: 'string', length: 50)]
     private $email;
 
@@ -64,7 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         min: 3, max: 50, minMessage: "Votre prénom ne peut pas avoir moins de 3 caractères",
         maxMessage: "Votre prénom ne peut pas faire plus de 50 caractères"
     )]
-    //#[Assert\Regex("#/^[a-z ,.'-]+$/i")]
+    //#[Assert\Regex("#\/^[a-z ,.'-]+$\/i")]
     #[ORM\Column(type: 'string', length: 50)]
     private $firstName;
 
