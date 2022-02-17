@@ -28,11 +28,14 @@ class majUser
 
             $user = $this->userRepository->find($idUser);
 
-            if ($user->getAdministrator()===1){
+            dump($user->getAdministrator());
+            dump($user->getIsActivated());
+
+            if ($user->getAdministrator()===true){
                 $user->setRoles(["ROLE_ADMIN"]);
             }
 
-            if($user->getIsActivated()===0){
+            if($user->getIsActivated()===false){
                 $user->setRoles(["ROLE_NULL"]);
             } else {
                 $user->setRoles(["ROLE_USER"]);
