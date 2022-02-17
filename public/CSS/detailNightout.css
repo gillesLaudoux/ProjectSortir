@@ -1,18 +1,20 @@
-.divdetail{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: rgba(135,206,250,0.1);
-    box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
-    /*margin-left: 35%;*/
-    /*margin-right: 35%;*/
-    /*margin-top: 8%;*/
-    margin : 6% 35% 0 35%;
-    color: black;
-}
+/*.divdetail{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    text-align: center;*/
+/*    background-color: rgba(135,206,250,0.1);*/
+/*    box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);*/
+/*    !*margin-left: 35%;*!*/
+/*    !*margin-right: 35%;*!*/
+/*    !*margin-top: 8%;*!*/
+/*    margin : 6% 35% 0 35%;*/
+/*    color: black;*/
+/*}*/
+
+
 h1{
-    color: #134A80;
-    font-size: 2.5em;
+    color: #efab53;
+    font-size: 2em;
     margin-bottom: 4%;
     padding-top: 7%;
 }
@@ -22,9 +24,14 @@ p{
     font-size: 1.2em;
 }
 
+.columns{
+    margin : 6vh 0 0 23vw ;
+}
+
+
 /*RESPONSIVE*/
 @media screen and (max-width: 640px) {
-    .divdetail{
+    .columns{
         margin :8% 6% 0 6%
     }
 }

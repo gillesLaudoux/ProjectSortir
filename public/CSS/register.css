@@ -16,7 +16,7 @@ body {
 }
 
 h1{
-     color: #134A80;
+     color: #efab53;
      /*padding-bottom: 20px;*/
 
      font-size: 2.5em;
@@ -106,7 +106,7 @@ button{
     height: 55px;
     border: none;
     outline: none;
-    background: #134A80;
+    background: #efab53;
     color: white;
     font-size: 2em;
     border-radius: 40px;
@@ -120,8 +120,8 @@ button{
 .btn:hover {
     transform: scale(1.1);
     transition: 0.5s;
-    background: #114273;
-    color: #bf8a3d;
+    background: #efab53;
+    color: #ffffff;
 }
 
 /*RESPONSIVE*/

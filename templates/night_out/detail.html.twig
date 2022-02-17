@@ -33,8 +33,8 @@
 
     </div>
     <div class="column">
-
-    Liste des participants : <br>
+        <div class="participants">
+    <h1>Liste des participants</h1> <br>
 
         {% for participant in participants %}
             <img id="photoprofil" src="{{ asset("uploads/avatar/" ~ participant.avatar.AvatarFileName) }}" alt="Ma photo" style="width: 30px ; height: 30px">
@@ -47,7 +47,7 @@
 
     </div>
     </div>
-    <div class="participants">
+
 
 
 {% endblock %}

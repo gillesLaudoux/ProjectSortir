@@ -21,7 +21,7 @@
 }
 
 .loginform .divlogin h1 {
-    color: #134A80;
+    color: #efab53;
     /*padding-bottom: 20px;*/
     padding-bottom: 3%;
     font-size: 2.5em;
@@ -88,7 +88,7 @@ a {
     height: 55px;
     border: none;
     outline: none;
-    background: #134A80;
+    background: #efab53;
     color: white;
     font-size: 2em;
     border-radius: 40px;
@@ -119,8 +119,8 @@ label {
 .loginform .divlogin .sousdivlogin button:hover {
     transform: scale(1.1);
     transition: 0.5s;
-    background: #114273;
-    color: #bf8a3d;
+    background: #efab53;
+    color: #ffffff;
 }
 
 /*RESPONSIVE*/
@@ -149,7 +149,7 @@ label {
     label {
 
         margin-right: 10%;
-        color: #114273;
+        color: #efab53;
 
     }
 

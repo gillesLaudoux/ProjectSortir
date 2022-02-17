@@ -6,7 +6,7 @@ body {
 
 /*----NAVBAR----*/
 .navbar {
-    background-color: #134A80;
+    background-color: #efab53;
     padding-left: 5%;
     padding-right: 5%;
 
@@ -34,7 +34,7 @@ body {
 #navbarBasicExample .navbar-end .navbar-item {
     font-size: 1.2em;
     color : white;
-    background-color:#134A80;
+    background-color:#efab53;
 }
 
 #navbarBasicExample .navbar-end .navbar-item:hover {
@@ -60,7 +60,7 @@ body {
 }
 /*---FOOTER----*/
 footer {
-    background-color: #134A80;
+    background-color: #efab53;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -78,13 +78,13 @@ footer p {
 /* ----RESPONSIVE---- */
 
 .navbar{
-    background-color:#134A80;
+    background-color:#efab53;
 }
 .navbar-item h1 {
     font-size: 1.5em;
 }
 .navbar-menu{
-    background-color: #134A80;
+    background-color: #efab53;
 }
 
 

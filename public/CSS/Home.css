@@ -20,20 +20,21 @@
         /*-webkit-border-radius: 0 20px 20px 0;*/
         /*-moz-border-radius: 0 20px 20px 0;*/
         /*border-radius: 0 20px 20px 0;*/
-        margin-left: 24vw;
+        margin-left: 27vw;
         overflow: scroll;
         overflow-x: hidden;
+
     }
     ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
     }
     ::-webkit-scrollbar-track {
-        background-color: rgba(108, 108, 108, 0.4);
+        background-color: rgba(108, 108, 108, 0);
         border-radius: 10px;
     }
     ::-webkit-scrollbar-thumb {
-        background-color: #dfdfdf;
+        background-color: rgba(223, 223, 223, 0);
         border-radius: 10px;
     }
     .filtres {
@@ -52,13 +53,13 @@
         text-align: center;
     }
     .card {
-        width: 350px;
+        width: 430px;
         padding : 0 0 6vh 1vw;
         top: 0;
         max-height: 22vh;
         overflow: hidden;
         border-radius: 20px;
-        background-color: rgba(44, 59, 68, 0.1);
+        background-color: rgb(232, 232, 232);
         -webkit-box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
         box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
     }
@@ -74,7 +75,7 @@
         width: 700px;
         height: 94vh;
         /*background-color: #adadad;*/
-        background-color: rgba(44, 59, 68, 0.1);
+        background-color: rgb(232, 232, 232);
         box-shadow: 0 6px 20px -5px rgba(41, 45, 47, 0.15);
         position: absolute;
     }
@@ -99,6 +100,70 @@
         margin-left: 2.5vw;
     }
 }
+
+
+
+
+                                                       /* CSS */
+                                                   .button-59 {
+                                                       align-items: center;
+                                                       background-color: #fff;
+                                                       border: 2px solid #000;
+                                                       box-sizing: border-box;
+                                                       color: #000;
+                                                       cursor: pointer;
+                                                       display: inline-flex;
+                                                       fill: #000;
+                                                       font-family: Inter,sans-serif;
+                                                       font-size: 16px;
+                                                       font-weight: 600;
+                                                       height: 48px;
+                                                       justify-content: center;
+                                                       letter-spacing: -.8px;
+                                                       line-height: 24px;
+                                                       min-width: 140px;
+                                                       outline: 0;
+                                                       padding: 0 17px;
+                                                       text-align: center;
+                                                       text-decoration: none;
+                                                       transition: all .3s;
+                                                       user-select: none;
+                                                       -webkit-user-select: none;
+                                                       touch-action: manipulation;
+                                                       margin: 3vh 0 0 1.5vw;
+                                                   }
+
+.button-59:focus {
+    color: #171e29;
+}
+
+.button-59:hover {
+    border-color: #ff6200;
+    color: #ff6200;
+    fill: #ff6200;
+}
+
+.button-59:active {
+    border-color: #ff6200;
+    color: #ff6200;
+    fill: #ff6200;
+}
+
+@media (min-width: 768px) {
+    .button-59 {
+        min-width: 170px;
+    }
+}
+
+@media (min-width: 768px) {
+    .button-49,
+    .button-49:after {
+        width: 200px;
+        height: 86px;
+        line-height: 88px;
+    }
+}
+
 /* MOBILE */
 @media screen and (max-width: 640px) {
     .container{

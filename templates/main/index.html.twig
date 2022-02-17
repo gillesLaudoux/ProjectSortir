@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('CSS/Home.css') }}">
 {% endblock %}
 {% block body %}
+    <img src="{{ asset('images/montgolfiere.png') }}" alt="" style="position: absolute;width: 80%; height: 90%;margin-left: 35%">
     <div class="couleur"></div>
     <div class="container">
         <div class="filtres"> <div class="envFiltres"> <div class="titre"><h1>Filtrer les sorties :</h1></div>
@@ -41,14 +42,14 @@
                                 <option value="{{ campus.name }}">{{ campus.name }}</option>
                             {% endfor %}
                         </select></div><br>
-                    <label for="filter_night_out_startTime">du  </label>
+                    <label for="filter_night_out_startTime">du   </label>
                     <input type="datetime-local" id="filter_night_out_startTime" name="filter_night_out_startTime">
-                    <label for="filter_night_out_startTime"><br><br>au </label>
+                    <label for="filter_night_out_startTime"><br><br>au  </label>
                     <input type="datetime-local" id="filter_night_out_endTime" name="filter_night_out_endTime">
-                    <div class="envoyer"><input type="submit" value="Envoyer"></div>
+                    <input type="submit" value="Envoyer" class="button-59">
                 </form>
                 <br>
-                <a href="{{ path('night_out_create') }}" style=" font-size: 22px">Organise ta propre sortie !</a>
+                <a href="{{ path('night_out_create') }}" style=" font-size: 20px">Organise ta propre sortie! 🥳</a>
 
 
             </div></div>
