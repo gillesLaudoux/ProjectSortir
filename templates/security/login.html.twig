@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}Sign In{% endblock %}
+{% block title %}{{ parent() }}Connexion{% endblock %}
 
 {% block CSS %}
     {{ parent() }}
@@ -20,7 +20,7 @@
         {#        </div> #}
         {#    {% endif %} #}
         <div class="divlogin">
-            <h1 class="connexion">Sign in </h1>
+            <h1 class="connexion">Se connecter</h1>
 
 
             <div class="sousdivlogin">
@@ -41,7 +41,7 @@
             <a href="{{ path("app_forgot_password_request") }}">Mot de passe oublié</a>
             <div class="rememberme">
                 <label>
-                    Keep me logged in
+                    Se souvenir de moi
                     <input type="checkbox" name="_remember_me" checked/>
                 </label>
             </div>
