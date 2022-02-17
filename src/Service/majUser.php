@@ -31,12 +31,10 @@ class majUser
             dump($user->getAdministrator());
             dump($user->getIsActivated());
 
-            if ($user->getAdministrator()===true){
-                $user->setRoles(["ROLE_ADMIN"]);
-            }
-
-            if($user->getIsActivated()===false){
+            if($user->getIsActivated()===false) {
                 $user->setRoles(["ROLE_NULL"]);
+            } elseif ($user->getAdministrator()===true) {
+                $user->setRoles(["ROLE_ADMIN"]);
             } else {
                 $user->setRoles(["ROLE_USER"]);
             }
