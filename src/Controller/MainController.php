@@ -17,7 +17,7 @@ class MainController extends AbstractController
     /** Page principale avec ajout d'un user à une NightOut possible */
     /* Il est nécessaire d'ajouter requirements: ['idNightOut' => '\d+'] pour indiquer que idNightOut est un digit
        Sinon, toute route comme /register déclenche notre index, et crée une erreur plantant l'app */
-    #[Route('/{idNightOut}', name: '_index', requirements: ['idNightOut' => '\d+'])]
+    #[Route('/{idNightOut}', name: 'home', requirements: ['idNightOut' => '\d+'])]
     public function index(NightOutRepository $nightOutRepository, CampusRepository $campusRepository,
                           AddRemoveNightOut $addRmv, Request $request, $idNightOut=0): Response
     {

@@ -71,7 +71,7 @@
                             {#            {% if nightOut in app.user.nightsOut %} #}
                             {#                <li>est incrit : ok</li> #}
                             <div class="icons">
-                            <a href="{{ path('night_out_filter', {'id': nightOut.id,'idNightOut': nightOut.id}) }}">
+                            <a href="{{ path('home', {'id': nightOut.id,'idNightOut': nightOut.id}) }}">
                                 {% if app.user not in nightOut.participants  %} {# Si l'utilisateur ne participe pas à l'activité : afficher le bouton participer #}
                                     <img src="{{ asset('images/participer.png') }}" alt="" class="participerImg">
                                 {% endif%}
