@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use App\Service\AddRemoveNightOut;
 use App\Service\majUser;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+    #[IsGranted("ROLE_USER")]
     /** Page principale avec ajout d'un user à une NightOut possible */
     /* Il est nécessaire d'ajouter requirements: ['idNightOut' => '\d+'] pour indiquer que idNightOut est un digit
        Sinon, toute route comme /register déclenche notre index, et crée une erreur plantant l'app */
