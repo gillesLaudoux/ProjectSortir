@@ -6,6 +6,7 @@ use App\Repository\CampusRepository;
 use App\Repository\NightOutRepository;
 use App\Repository\UserRepository;
 use App\Service\AddRemoveNightOut;
+use App\Service\majUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,9 +20,11 @@ class MainController extends AbstractController
        Sinon, toute route comme /register déclenche notre index, et crée une erreur plantant l'app */
     #[Route('/{idNightOut}', name: 'home', requirements: ['idNightOut' => '\d+'])]
     public function index(NightOutRepository $nightOutRepository, CampusRepository $campusRepository,
-                          AddRemoveNightOut $addRmv, Request $request, $idNightOut=0): Response
+                          AddRemoveNightOut $addRmv, Request $request, majUser $maj, $idNightOut=0): Response
     {
         $campusList = $campusRepository->findAll();
+
+        $maj->exec();
 
         if ($idNightOut !== 0) {
             $addRmv->exec($idNightOut);
