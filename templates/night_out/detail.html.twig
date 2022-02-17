@@ -8,46 +8,37 @@
 {% endblock %}
 
 {% block body %}
+    <img src="{{ asset('images/nantes.jpg') }}" alt="" style="position: absolute;width: 100%; height: 100%;">
 
-    <div class="columns">
-    <div class="column">
+    <div class="columnprincipal">
 
+            <div class="MonEvent">
+                <h1>Mon évènement</h1>
 
-        <div class="divdetail">
-            <h1>Mon évènement</h1>
+                <p>Nom de l'évènement : {{ nightOut.name }}</p>
+                <p>Date / Heure : {{ nightOut.startingTime |date ('d-m-Y')}}</p>
+                <p>Date limite d'inscription : {{ nightOut.dueDateInscription |date ('d-m-Y')}}</p>
+                <p>Nombre de places : {{ nightOut.nbInscriptionMax }}</p>
+                {#  <p>Durée de lévénement : {{ nightOut.duration }}</p>#}
+                <p>Description : {{ nightOut.description }}</p>
+                <p>Campus : {{ nightOut.campus.name }}</p>
+                <p>Lieu : {{ nightOut.places.name }}</p>
+                <p>Rue : {{ nightOut.places.street }} </p>
+                <p>Ville : {{ nightOut.places.city.name }} </p>
+                <p>Code Postal : {{ nightOut.places.city.zipcode }} </p>
+                <p>Type d'événement : {{ nightOut.category.libelle }}</p>
+            </div>
 
-            <p>Nom de l'évènement : {{ nightOut.name }}</p>
-            <p>Date / Heure : {{ nightOut.startingTime |date ('d-m-Y')}}</p>
-            <p>Date limite d'inscription : {{ nightOut.dueDateInscription |date ('d-m-Y')}}</p>
-            <p>Nombre de places : {{ nightOut.nbInscriptionMax }}</p>
-            {#  <p>Durée de lévénement : {{ nightOut.duration }}</p>#}
-            <p>Description : {{ nightOut.description }}</p>
-            <p>Campus : {{ nightOut.campus.name }}</p>
-            <p>Lieu : {{ nightOut.places.name }}</p>
-            <p>Rue : {{ nightOut.places.street }} </p>
-            <p>Ville : {{ nightOut.places.city.name }} </p>
-            <p>Code Postal : {{ nightOut.places.city.zipcode }} </p>
-            <p>Type d'événement : {{ nightOut.category.libelle }}</p>
-        </div>
-
-
+            <div class="MesParticipants">
+                <ul>
+                    <p>{% for participant in participants %}
+                        <div class="card">
+                            <img id="photoprofil" src="{{ asset("uploads/avatar/" ~ participant.avatar.AvatarFileName) }}" alt="Ma photo" style="width: 30px ; height: 30px">
+                            {#        <a href="{{ path('det', {'id': nightOut.id}) }}>{{ participant.username }}</a><br>#}
+                            <a href={{ path('detail', {'id': participant.id}) }}>{{ participant.username }}</a></p><br>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
     </div>
-    <div class="column">
-        <div class="participants">
-    <h1>Liste des participants</h1> <br>
-
-        {% for participant in participants %}
-            <img id="photoprofil" src="{{ asset("uploads/avatar/" ~ participant.avatar.AvatarFileName) }}" alt="Ma photo" style="width: 30px ; height: 30px">
-            {#        <a href="{{ path('det', {'id': nightOut.id}) }}>{{ participant.username }}</a><br>#}
-            <a href={{ path('detail', {'id': participant.id}) }}>{{ participant.username }}</a><br>
-
-        {% endfor %}
-    </div>
-
-
-    </div>
-    </div>
-
-
-
 {% endblock %}

@@ -1,15 +1,12 @@
 body {
     margin: 0;
-
     width: 100%;
 }
-
 /*----NAVBAR----*/
 .navbar {
     background-color: #efab53;
     padding-left: 5%;
     padding-right: 5%;
-
 }
 
 
@@ -25,34 +22,28 @@ body {
 
 
 }
-
 .navbar p{
     padding-right: 300px;
     font-size: 30px;
-
 }
 #navbarBasicExample .navbar-end .navbar-item {
     font-size: 1.2em;
     color : white;
     background-color:#efab53;
 }
-
 #navbarBasicExample .navbar-end .navbar-item:hover {
     font-size: 1.2em;
     color: #bf8a3d;
 }
-
 #navbarBasicExample .navbar-end p{
     color:white;
     font-size: 1.3em;
 }
-
 #navbarBasicExample .navbar-end .navbar-itemhey{
     color: #bf8a3d;
     font-size: 1.4em;
     padding-top: 2%;
     margin-right: 70%;
-
 }
 .navbar-burger{
     justify-content: space-between;
@@ -66,17 +57,13 @@ footer {
     width: 100%;
     height: 60px;
     text-align: center;
-
 }
-
 footer p {
     text-align: center;
     color: white;
     padding-top: 1%;
 }
-
 /* ----RESPONSIVE---- */
-
 .navbar{
     background-color:#efab53;
 }
@@ -86,41 +73,17 @@ footer p {
 .navbar-menu{
     background-color: #efab53;
 }
-
-
-
-
-
 #navbarBasicExample .navbar-end .navbar-itemhey{
     color:white;
     font-size: 1.3em;
     margin-left: 3.5%;
-
 }
-
 div input{
     border: none;
     border-radius: 7px;
     height: 38px;
     text-align: center;
 }
-
 footer p{
     padding-top: 4%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
