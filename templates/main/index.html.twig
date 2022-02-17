@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ parent() }}Home{% endblock %}
+{% block title %}{{ parent() }}Accueil{% endblock %}
 {% block CSS %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('CSS/Home.css') }}">
@@ -27,12 +27,12 @@
                     <button>Envoyer</button>
                 {{ form_end(filterForm) }} #}
                 <form action="">
-                    <div class="barderecherche">  <input type="text" id="filter_night_out_name" name="filter_night_out_name" placeholder="Search"></div><br>
+                    <div class="barderecherche">  <input type="text" id="filter_night_out_name" name="filter_night_out_name" placeholder="Rechercher"></div><br>
                     <div class="filtre1"><label for="is_organizer">Dont vous êtes l'organisateur</label>
                         <input type="checkbox" value="{{ app.user.id }}" class="night_out_filter form_filter checkbox" name="is_organizer" id="is_organizer"></div><br>
-                    <div class="filtre2"><label for="is_participant">Auxquels vous participez</label>
+                    <div class="filtre2"><label for="is_participant">Auxquelles vous participez</label>
                         <input type="checkbox" value="{{ app.user.id }}" name="is_participant" id="is_participant" class="night_out_filter form_filter checkbox"></div><br>
-                    <div class="filtre3"><label for="not_participant">Auxquels vous ne participez pas</label>
+                    <div class="filtre3"><label for="not_participant">Auxquelles vous ne participez pas</label>
                         <input type="checkbox" value="{{ app.user.id }}" name="not_participant" id="not_participant"
                                class="night_out_filter form_filter checkbox"></div><br>
                     <div class="campus"><label for="filter_night_out_campus">Campus :</label>
@@ -42,9 +42,9 @@
                                 <option value="{{ campus.name }}">{{ campus.name }}</option>
                             {% endfor %}
                         </select></div><br>
-                    <label for="filter_night_out_startTime">du   </label>
+                    <label for="filter_night_out_startTime">Du   </label>
                     <input type="datetime-local" id="filter_night_out_startTime" name="filter_night_out_startTime">
-                    <label for="filter_night_out_startTime"><br><br>au  </label>
+                    <label for="filter_night_out_startTime"><br><br>Au  </label>
                     <input type="datetime-local" id="filter_night_out_endTime" name="filter_night_out_endTime">
                     <input type="submit" value="Envoyer" class="button-59">
                 </form>
@@ -64,8 +64,8 @@
                             Campus : {{ nightOut.campus.name }}<br>
                             <br>
                             {{ nightOut.description }}<br><br>
-                            le : {{ nightOut.startingTime | date('d/m/Y à H:i') }}<br>
-                            fin des inscriptions le {{ nightOut.dueDateInscription | date('d/m/Y à H:i') }}<br>
+                            Le : {{ nightOut.startingTime | date('d/m/Y à H:i') }}<br>
+                            Fin des inscriptions le {{ nightOut.dueDateInscription | date('d/m/Y à H:i') }}<br>
                             Nombre de places : {{ nightOut.nbInscriptionMax }}<br>
                             {#                     {{ nightOut.state.libelle }}<br>#}
                             {# quand l'utilisateur sera connecté je serais si il est insrit #}

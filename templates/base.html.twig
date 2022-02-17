@@ -49,7 +49,7 @@
 
                 <a class="navbar-item"
 {#                        {% if app.user %}#}
-                   href="{{ path('home') }}">Home
+                   href="{{ path('home') }}">Accueil
 {#                    {% endif %}#}
 {#                    {% if not app.user %}#}
 {#                        href="{{ path('loginorregister') }}">Home#}
@@ -64,10 +64,10 @@
 
                 <a class="navbar-item"
                         {% if app.user %}
-                   href="{{ path('app_logout') }}">Logout
+                   href="{{ path('app_logout') }}">Déconnexion
                     {% endif %}
                     {% if not app.user %}
-                        href="{{ path('app_login') }}">Login
+                        href="{{ path('app_login') }}">Connexion
                     {% endif %}
                 </a>
             </div>

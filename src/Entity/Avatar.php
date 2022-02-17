@@ -16,7 +16,7 @@ class Avatar
 
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[Assert\Length(min : 5, max : 255, minMessage: "Le nom du fichier est trop court !", maxMessage: "Le nom du 
+    #[Assert\Length(min : 3, max : 255, minMessage: "Le nom du fichier est trop court !", maxMessage: "Le nom du 
     fichier est trop long !")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $AvatarFileName;
