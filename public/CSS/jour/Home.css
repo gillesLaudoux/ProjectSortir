@@ -188,4 +188,10 @@
         width: 20%;
         height: 20%;
     }
+    .photo {
+        display : none;
+    }
+    .resultats {
+        margin-top : 50px
+    }
 }
