@@ -1,0 +1,121 @@
+.divupload{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(148, 148, 148, 0.1);
+    box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
+    margin-left: 35%;
+    margin-right: 35%;
+    border-radius: 5%;
+    margin-top: 5%;
+    padding-bottom: 3%;
+
+}
+
+.divupload h1{
+    color: #000;
+    font-size: 2.5em;
+    margin-top: 4%;
+}
+
+.sousdivupload{
+    padding-top: 5%;
+}
+.sousdivupload div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.sousdivupload #avatar_AvatarFileName, #avatar_AvatarFileType{
+    width: 70%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: black;
+    color: white;
+    font-size: 1.3em;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 20px -20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: text;
+    margin-left: 15%;
+}
+
+.sousdivupload #avatar{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.sousdivupload #avatar_Avatar{
+    width: 70%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: #000;
+    color: #ffffff;
+    font-size: 1.3em;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 20px -20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: text;
+    margin-left: 15%;
+    margin-bottom: 15%;
+
+}
+
+/*.sousdivupload #file-upload-button{*/
+/*    background-color: #134A80;*/
+/*}*/
+
+div input[type=file]{
+    background-color: #000;
+}
+
+button{
+    width: 50%;
+    height: 55px;
+    border: none;
+    outline: none;
+    background: #000;
+    color: white;
+    font-size: 2em;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 15px;
+}
+
+button:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    background: #000;
+    color: #ffffff;
+}
+/*RESPONSIVE*/
+@media screen and (max-width: 640px) {
+
+    .divupload {
+
+        flex-direction: column;
+        text-align: center;
+        background-color: rgba(135, 206, 250, 0.1);
+        box-shadow: 0 6px 20px -5px rgba(135, 206, 250, 0.15);
+        margin-left: 6%;
+        margin-right: 6%;
+        padding-top: 1.5%;
+        padding-bottom: 1.5%;
+        border-radius: 5%;
+        margin-top: 16%;
+    }
+
+    .divupload h1{
+        color: #000;
+        font-size: 2em;
+        margin-top: 4%;
+    }
+}

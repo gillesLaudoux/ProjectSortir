@@ -4,11 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}HANG OUT | {% endblock %}</title>
+
+
+{#    2 = jour , 1 = nuit #}
     {% block CSS %}
-        <link rel="icon" type="image/png" href="{{ asset('images/poulet-frit.png') }}" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-        <link rel="stylesheet" href="{{ asset('CSS/Base.css') }}">
+    {% if app.user is null %}
+
+
+            <link rel="icon" type="image/png" href="{{ asset('images/poulet-frit.png') }}" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+            <link rel="stylesheet" href="{{ asset('CSS/jour/Base.css') }}">
+
+    {% endif %}
+
+        {% if app.user %}
+
+
+            {% if app.user.theme == 2 or app.user.theme == 0 %}
+                {% set t = '/jour/' %}
+            {% endif %}
+            {% if app.user.theme == 1 %}
+                {% set t = '/nuit/' %}
+            {% endif %}
+
+
+            <link rel="icon" type="image/png" href="{{ asset('images/poulet-frit.png') }}" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+            <link rel="stylesheet" href="{{ asset('CSS'~ t ~ 'Base.css') }}">
+
+        {% endif %}
+
+
     {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
 
 
 </head>
@@ -45,7 +83,23 @@
                 {% if app.user %}
                     <p>Hey {{ app.user.username }} !</p>
                 {% endif %}
+
                 </a>
+
+                {% if app.user  %}
+                <a class="navbar-item"
+
+                {% if app.user.theme == 1 %}
+                    <a href="{{ path('home', {'theme':2}) }}">☀️</a>
+                {% endif %}
+
+
+                {% if app.user.theme == 2 or app.user.theme == 0 %}
+                    <a href="{{ path('home', {'theme':1}) }}">🌙 </a>
+                {% endif %}
+
+                </a>
+                {% endif %}
 
                 <a class="navbar-item"
 {#                        {% if app.user %}#}
@@ -75,10 +129,12 @@
     </nav>
 </header>
 
+
 {% block body %}
 
 
 {% endblock %}
+
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/snowscript.js') }}"></script>
 </body>

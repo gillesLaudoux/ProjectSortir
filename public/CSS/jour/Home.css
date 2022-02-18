@@ -58,8 +58,8 @@
         top: 0;
         max-height: 22vh;
         overflow: hidden;
-        border-radius: 20px;
-        background-color: rgb(232, 232, 232);
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.84);
         -webkit-box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
         box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
     }
