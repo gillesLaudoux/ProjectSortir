@@ -67,6 +67,50 @@ ul{
     list-style: none;
 }
 
+/* CSS */
+.button-59 {
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #000;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    min-width: 140px;
+    outline: 0;
+    padding: 0 17px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 3vh 0 0 1.5vw;
+}
+
+.button-59:focus {
+    color: #171e29;
+}
+
+.button-59:hover {
+    border-color: #3700ff;
+    color: #3700ff;
+    fill: #3700ff;
+}
+
+.button-59:active {
+    border-color: #3700ff;
+    color: #3700ff;
+    fill: #3700ff;
+}
 
 /*RESPONSIVE*/
 @media screen and (max-width: 640px) {

@@ -34,33 +34,39 @@
 
     <div class="columnprincipal">
 
-            <div class="MonEvent">
-                <h1>Mon évènement</h1>
+        <div class="MonEvent">
+            <h1>Mon évènement</h1>
 
-                <p>Nom de l'évènement : {{ nightOut.name }}</p>
-                <p>Date / Heure : {{ nightOut.startingTime |date ('d-m-Y')}}</p>
-                <p>Date limite d'inscription : {{ nightOut.dueDateInscription |date ('d-m-Y')}}</p>
-                <p>Nombre de places : {{ nightOut.nbInscriptionMax }}</p>
-                {#  <p>Durée de lévénement : {{ nightOut.duration }}</p>#}
-                <p>Description : {{ nightOut.description }}</p>
-                <p>Campus : {{ nightOut.campus.name }}</p>
-                <p>Lieu : {{ nightOut.places.name }}</p>
-                <p>Rue : {{ nightOut.places.street }} </p>
-                <p>Ville : {{ nightOut.places.city.name }} </p>
-                <p>Code Postal : {{ nightOut.places.city.zipcode }} </p>
-                <p>Type d'événement : {{ nightOut.category.libelle }}</p>
-            </div>
+            <p>Nom de l'évènement : {{ nightOut.name }}</p>
+            <p>Date / Heure : {{ nightOut.startingTime |date ('d-m-Y') }}</p>
+            <p>Date limite d'inscription : {{ nightOut.dueDateInscription |date ('d-m-Y') }}</p>
+            <p>Nombre de places : {{ nightOut.nbInscriptionMax }}</p>
+            {#  <p>Durée de lévénement : {{ nightOut.duration }}</p> #}
+            <p>Description : {{ nightOut.description }}</p>
+            <p>Campus : {{ nightOut.campus.name }}</p>
+            <p>Lieu : {{ nightOut.places.name }}</p>
+            <p>Rue : {{ nightOut.places.street }} </p>
+            <p>Ville : {{ nightOut.places.city.name }} </p>
+            <p>Code Postal : {{ nightOut.places.city.zipcode }} </p>
+            <p>Type d'événement : {{ nightOut.category.libelle }}</p>
 
-            <div class="MesParticipants">
-                <ul>
-                    <p>{% for participant in participants %}
-                        <div class="card">
-                            <img id="photoprofil" src="{{ asset("uploads/avatar/" ~ participant.avatar.AvatarFileName) }}" alt="Ma photo" style="width: 30px ; height: 30px">
-                            {#        <a href="{{ path('det', {'id': nightOut.id}) }}>{{ participant.username }}</a><br>#}
-                            <a href={{ path('detail', {'id': participant.id}) }}>{{ participant.username }}</a></p><br>
-                        </div>
-                    {% endfor %}
-                </ul>
-            </div>
+            {% if app.user == nightOut.organizer %}
+                <button class="button-59"><a href={{ path('night_out_update', {'id': nightOut.id}) }}>Modifier</a>
+                </button>
+            {% endif %}
+        </div>
+
+        <div class="MesParticipants">
+            <ul>
+                <p>{% for participant in participants %}
+                <div class="card">
+                    <img id="photoprofil" src="{{ asset("uploads/avatar/" ~ participant.avatar.AvatarFileName) }}"
+                         alt="Ma photo" style="width: 30px ; height: 30px">
+                    {#        <a href="{{ path('det', {'id': nightOut.id}) }}>{{ participant.username }}</a><br> #}
+                    <a href={{ path('detail', {'id': participant.id}) }}>{{ participant.username }}</a></p><br>
+                </div>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}
