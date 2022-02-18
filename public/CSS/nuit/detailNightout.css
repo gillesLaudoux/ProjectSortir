@@ -11,28 +11,75 @@
 /*    color: black;*/
 /*}*/
 
+.columnprincipal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: justify-all;
+}
+
+.MonEvent{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 0 25px 20px 25px ;
+    background-color: rgb(65, 65, 64, 0.75);
+    border-radius: 30px;
+}
+
+.MesParticipants{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding-right: 5px;
+
+}
+.card {
+    width: 300px;
+    padding : 2vh 3vh 6vh 1vw;
+    top: 0;
+    margin-top: 2vh;
+    max-height: 5vh;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: rgba(65, 64, 64, 0.75);
+    -webkit-box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
+    box-shadow: 5px 11px 15px -4px rgba(0,0,0,0.39);
+}
 
 h1{
-    color: #000000;
+    color: rgb(208, 208, 208);
     font-size: 2em;
     margin-bottom: 4%;
     padding-top: 7%;
 }
 
 p{
+    color: rgb(208, 208, 208);
     padding-bottom: 2%;
     font-size: 1.2em;
+
 }
 
-.columns{
-    margin : 6vh 0 0 23vw ;
+ul{
+    list-style: none;
 }
 
 
 /*RESPONSIVE*/
 @media screen and (max-width: 640px) {
-    .columns{
-        margin :8% 6% 0 6%
+    .columnprincipal{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: rgba(135,206,250,0.1);
+        box-shadow: 0 6px 20px -5px rgba(135,206,250,0.15);
+        margin-left: 6%;
+        margin-right: 6%;
+        border-radius: 5%;
+        margin-top: 1%;
     }
 }
 

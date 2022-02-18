@@ -117,6 +117,6 @@ class Place
 
     public function __toString()
     {
-        return $this->name . $this->city . $this->street;
+        return $this->name . $this->city . $this->street . $this->nightsOut;
     }
 }

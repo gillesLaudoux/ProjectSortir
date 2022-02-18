@@ -2,6 +2,16 @@
 
 {% block title %}{{ parent() }}Afficher une sortie{% endblock %}
 
+{% if app.user.theme == 2 or app.user.theme == 0 %}
+    {% set t = '/jour/' %}
+    {% set i = 'nantes.jpg' %}
+{% endif %}
+        {% if app.user.theme == 1 %}
+            {% set t = '/nuit/' %}
+            {% set i = 'nantesbynight.jpg' %}
+        {% endif %}
+
+
 {% block CSS %}
     {{ parent() }}
     {% if app.user is null %}
@@ -11,12 +21,7 @@
     {% if app.user %}
 
 
-        {% if app.user.theme == 2 or app.user.theme == 0 %}
-            {% set t = '/jour/' %}
-        {% endif %}
-        {% if app.user.theme == 1 %}
-            {% set t = '/nuit/' %}
-        {% endif %}
+
 
         <link rel="stylesheet" href="{{ asset('CSS'~ t ~ 'detailNightout.css') }}">
 
@@ -25,7 +30,7 @@
 {% endblock %}
 
 {% block body %}
-    <img src="{{ asset('images/nantes.jpg') }}" alt="" style="position: absolute;width: 100%; height: 100%;">
+    <img src="{{ asset('images/'~ i) }}" alt="" style="position: absolute;width: 100%; height: 100%;">
 
     <div class="columnprincipal">
 
