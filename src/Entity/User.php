@@ -104,6 +104,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(targetEntity: Avatar::class, cascade: ['persist', 'remove'])]
     private $avatar;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $theme;
+
 
     public function __construct()
     {
@@ -334,6 +337,18 @@ public function getAvatar(): ?Avatar
 public function setAvatar(?Avatar $avatar): self
 {
     $this->avatar = $avatar;
+
+    return $this;
+}
+
+public function getTheme(): ?int
+{
+    return $this->theme;
+}
+
+public function setTheme(?int $theme): self
+{
+    $this->theme = $theme;
 
     return $this;
 }

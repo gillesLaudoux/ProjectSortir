@@ -1,11 +1,36 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}Home{% endblock %}
+
+  {% if app.user.theme == 2 or app.user.theme == 0 %}
+      {% set t = '/jour/' %}
+      {% set i = 'montgolfiere.png' %}
+  {% endif %}
+        {% if app.user.theme == 1 %}
+            {% set t = '/nuit/' %}
+            {% set i = 'nuitwallpaper.jpg' %}
+        {% endif %}
+
 {% block CSS %}
+
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('CSS/Home.css') }}">
+    {% if app.user is null %}
+        <link rel="stylesheet" href="{{ asset('CSS/jour/Home.css') }}">
+    {% endif %}
+
+    {% if app.user %}
+
+
+        <link rel="stylesheet" href="{{ asset('CSS'~ t ~ 'Home.css') }}">
+
+    {% endif %}
+
 {% endblock %}
+
 {% block body %}
-    <img src="{{ asset('images/montgolfiere.png') }}" alt="" style="position: absolute;width: 80%; height: 90%;margin-left: 35%">
+
+
+
+    <img src="{{ asset('images/'~ i) }}" alt="" style="position: absolute;width: 80%; height: 90%;margin-left: 35%">
     <div class="couleur"></div>
     <div class="container">
         <div class="filtres"> <div class="envFiltres"> <div class="titre"><h1>Filtrer les sorties :</h1></div>

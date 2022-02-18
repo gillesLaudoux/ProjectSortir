@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+
+    width: 100%;
+}
+
+/*----NAVBAR----*/
+.navbar {
+    background-color: #000000;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+
+.navbar-item h1 {
+    font-size: 2em;
+    color : white;
+    padding-left: 20px;
+
+}
+.logoblanc{
+    width: 40px;
+    height: 30px;
+
+
+}
+
+.navbar p{
+    padding-right: 300px;
+    font-size: 30px;
+
+}
+#navbarBasicExample .navbar-end .navbar-item {
+    font-size: 1.2em;
+    color : white;
+    background-color: #000000;
+}
+
+#navbarBasicExample .navbar-end .navbar-item:hover {
+    font-size: 1.2em;
+    color: #000000;
+}
+
+#navbarBasicExample .navbar-end p{
+    color:white;
+    font-size: 1.3em;
+}
+
+#navbarBasicExample .navbar-end .navbar-itemhey{
+    color: #000000;
+    font-size: 1.4em;
+    padding-top: 2%;
+    margin-right: 70%;
+
+}
+.navbar-burger{
+    justify-content: space-between;
+    color: white;
+}
+/*---FOOTER----*/
+footer {
+    background-color: #000000;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+
+}
+
+footer p {
+    text-align: center;
+    color: white;
+    padding-top: 1%;
+}
+
+/* ----RESPONSIVE---- */
+
+
+.navbar-item h1 {
+    font-size: 1.5em;
+}
+.navbar-menu{
+    background-color: #000000;
+}
+
+
+
+
+
+#navbarBasicExample .navbar-end .navbar-itemhey{
+    color:white;
+    font-size: 1.3em;
+    margin-left: 3.5%;
+
+}
+
+div input{
+    border: none;
+    border-radius: 7px;
+    height: 38px;
+    text-align: center;
+}
+
+footer p{
+    padding-top: 4%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

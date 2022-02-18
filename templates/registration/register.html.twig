@@ -4,7 +4,24 @@
 
 {% block CSS %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('CSS/register.css') }}">
+    {% if app.user is null %}
+        <link rel="stylesheet" href="{{ asset('CSS/jour/register.css') }}">
+    {% endif %}
+
+    {% if app.user %}
+
+
+        {% if app.user.theme == 2 or app.user.theme == 0 %}
+            {% set t = '/jour/' %}
+        {% endif %}
+        {% if app.user.theme == 1 %}
+            {% set t = '/nuit/' %}
+        {% endif %}
+
+        <link rel="stylesheet" href="{{ asset('CSS'~ t ~ 'register.css') }}">
+
+    {% endif %}
+
 {% endblock %}
 
 {% block body %}
