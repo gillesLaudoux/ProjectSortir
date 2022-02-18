@@ -30,6 +30,7 @@ class majUser
 
             if($user->getIsActivated()===false) {
                 $user->setRoles(["ROLE_NULL"]);
+
             } elseif ($user->getAdministrator()===true) {
                 $user->setRoles(["ROLE_ADMIN"]);
             } else {

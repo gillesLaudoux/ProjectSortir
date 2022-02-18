@@ -23,8 +23,8 @@ class MainController extends AbstractController
                           AddRemoveNightOut $addRmv, Request $request, majUser $maj, $idNightOut=0, $theme=-1): Response
     {
         $campusList = $campusRepository->findAll();
+
         $maj->exec();
-dump( $this->getUser());
         if ($idNightOut != 0) {
             $addRmv->exec($idNightOut);
             $nightOutList = $nightOutRepository->selectAll();
