@@ -22,14 +22,14 @@ class NightOutCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('name'),
             DateTimeField::new('startingTime'),
             DateTimeField::new('dueDateInscription'),
             NumberField::new('nbInscriptionMax'),
             TextEditorField::new('description'),
             //AssociationField::new('participants'),
-            //AssociationField::new('organizer'),
+            AssociationField::new('organizer'),
             //AssociationField::new('campus'),
             //AssociationField::new('places'),
             //AssociationField::new('state'),

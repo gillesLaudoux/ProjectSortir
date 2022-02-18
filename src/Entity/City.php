@@ -99,6 +99,6 @@ class City
 
     public function __toString()
     {
-        return $this->name . $this->zipCode . $this->places;
+        return $this->name . $this->zipCode;
     }
 }

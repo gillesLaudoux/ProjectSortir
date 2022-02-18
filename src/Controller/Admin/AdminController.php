@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Campus;
+use App\Entity\City;
 use App\Entity\NightOut;
 use App\Entity\Place;
 use App\Entity\User;
@@ -80,6 +81,11 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::subMenu('Action Places', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Create Place', 'fas fa-plus', Place::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Place', 'fas fa-eye', Place::class)
+        ]);
+
+        yield MenuItem::subMenu('Action City', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create City', 'fas fa-plus', City::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show City', 'fas fa-eye', City::class)
         ]);
 
     }
